@@ -43,9 +43,8 @@ db.User.hasMany(db.Wishlist, {foreignKey: 'userId'});
 db.Item.belongsToMany(db.Wishlist, {through: 'WishItem', foreignKey: 'wishItemId'});
 db.Wishlist.belongsToMany(db.Item, {through: 'WishItem', foreignKey: 'wishItemId'});
 
-db.User.belongsToMany(db.User, {as: 'First', through: 'FriendList', foreignKey: 'friendId'});
-db.User.belongsToMany(db.User, {as: 'Second', through: 'FriendList', foreignKey: 'friendId'});
-
+db.User.belongsToMany(db.User, {as: 'friend2', through: 'FriendList', foreignKey: 'friend1Id' , otherKey: 'friend2Id'}); 
+db.User.belongsToMany(db.User, {as: 'friend1', through: 'FriendList', foreignKey: 'friend2Id' , otherKey: 'friend1Id'}); 
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
