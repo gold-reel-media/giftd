@@ -10,3 +10,7 @@
 button:focus {
     outline:0;
 }
+
+.MuiInputBase-input-165 {
+    border-top-color: purple !important;
+}
