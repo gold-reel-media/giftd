@@ -43,9 +43,11 @@ class App extends Component {
         <UserProfile/>
         <Main />
         <Route exact path='/callback' component={Callback} />
+
       </div>
     );
   }
 }
 
 export default withRouter(App);
+
