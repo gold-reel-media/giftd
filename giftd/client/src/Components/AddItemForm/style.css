@@ -1,0 +1,62 @@
+.form-container {
+    border: 1rem double #0d9aaa;
+    border-radius: 20px;
+    padding: 20px;
+    width:600px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.add-item {
+    
+    border-radius: 20px;
+    border: 2px solid #9f7694;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .add-item input,
+  .add-item textarea,
+  .add-item select {
+    width: 100%;
+    padding: 10px;
+    line-height: 1;
+    font-size: 1.2rem;
+    border: 0;
+    border-bottom: 1px solid #9f7694;
+    border-right: 1px solid #9f7694;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    border-radius: 0;
+    background: #fff;
+    text-align: center;
+  }
+  .add-item input:focus,
+  .add-item textarea:focus,
+  .add-item select:focus {
+    outline: 0;
+    background: #0d9aaa6b;
+  }
+  .add-item textarea {
+    width: 100%;
+  }
+  .add-item input:last-of-type {
+    width: 100%;
+  }
+  .add-item button {
+    width: 100%;
+    border: 0;
+    padding: 20px;
+    font-size: 19px;
+    color: #9f7694;
+  }
+
+  .add-item button:hover {
+    background-color:#9f7694;
+    color: white;
+    transition: all 0.2s
+  }
