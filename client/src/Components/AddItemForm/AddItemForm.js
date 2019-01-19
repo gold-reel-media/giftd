@@ -1,3 +1,155 @@
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import TextField from '@material-ui/core/TextField';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import InputAdornment from '@material-ui/core/InputAdornment';
+// import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    maxWidth: '100%',
+    
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+  
+});
+
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
+
+class OutlinedTextFields extends React.Component {
+  state = {
+    open: false,
+  };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div>
+        <Button style={{borderRadius:"100px"}} onClick={this.handleClickOpen}>
+          <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-vol-4/512/169-Add_charge_create_new_plus_positive_-512.png" height="200"/>
+        </Button>
+        <Dialog
+          open={this.state.open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            {"New Item"}
+          </DialogTitle>
+          <DialogContent>
+            <form  noValidate autoComplete="off">
+              <TextField
+                id="outlined-name"
+                label="Name"
+                
+                value={this.state.name}
+                onChange={this.handleChange('name')}
+                margin="normal"
+                variant="outlined"
+                style={{ width: "48%", marginRight: "15PX", border:'purple'}}
+              />
+              <TextField
+                id="outlined-adornment-amount"
+                style={{ width: "48%", marginTop: '16px' }}
+                className={classNames(styles.backgroundColor, styles.textField)}
+                variant="outlined"
+                label="Price"
+                value={this.state.amount}
+                onChange={this.handleChange('amount')}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                }}
+              />
+              <TextField
+                id="outlined-name"
+                label="Item Link"
+                fullWidth
+                value={this.state.name}
+                onChange={this.handleChange('name')}
+                margin="normal"
+                variant="outlined"
+                
+              />
+              <TextField
+                id="outlined-name"
+                label="Image Link"
+                fullWidth
+                value={this.state.name}
+                onChange={this.handleChange('name')}
+                margin="normal"
+                variant="outlined"
+                
+              />
+              <TextField
+                id="outlined-multiline-flexible"
+                label="Description"
+                multiline
+                rowsMax="4"
+                // defaultValue="Default Value"
+                // className={classes.textField}
+                value={this.state.multiline}
+                onChange={this.handleChange('multiline')}
+                margin="normal"
+                variant="outlined"
+                style={{ width: "100%" }}
+              />
+              </form>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Add Item
+            </Button>
+      
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
+}
+
+OutlinedTextFields.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+
+export default OutlinedTextFields;
 
 
 

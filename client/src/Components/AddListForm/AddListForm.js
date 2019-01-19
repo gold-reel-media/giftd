@@ -3,31 +3,12 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import './style.css';
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  dense: {
-    marginTop: 16,
-  },
-  menu: {
-    width: 200,
-  },
-});
+
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
