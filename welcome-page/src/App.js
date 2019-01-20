@@ -23,7 +23,7 @@ class App extends React.Component {
       fontSize: 25,
       lineHeight: "55px",
       textAlign: "center",
-      margin: "30px",
+      margin: "50px",
       color: "white",
       display: "flex",
       alignItems: "center",

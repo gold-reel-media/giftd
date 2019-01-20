@@ -20,17 +20,18 @@ class Layer4 extends React.Component {
 
         const pstyle = {
             textAlign: "center",
-            fontSize: '15px',
-        }
-
-        return <div>
+            fontSize: '17px',
+        };
+    
+    return ( 
+        <div>
             <h1> Meet the Team </h1>
             <Grid container spacing={24}>
                 <Grid item xs={6}>
                     <p style={pstyle}> Kathleen </p>
                 <img src={kathleen} style={styles} />
                 <br />
-                <p style ={{textAlign: "center", fontSize: "15px"}}> Some info about Kathleen goes here. </p>
+                <p style ={pstyle}> Some info about Kathleen goes here. </p>
                 </Grid>
                 <Grid item xs={6}>
                     <p style={pstyle}> Cristina </p>
@@ -51,8 +52,9 @@ class Layer4 extends React.Component {
                     <p style ={pstyle}> Some info about Thomas goes here. </p>
                 </Grid>
             </Grid>
-        </div>;
+        </div>
+        );
     }
-}
+};
 
 export default (Layer4);
