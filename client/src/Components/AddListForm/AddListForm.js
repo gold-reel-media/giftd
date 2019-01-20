@@ -76,7 +76,7 @@ class AlertDialogSlide extends React.Component {
                 
                 value={this.state.listName}
                 onChange={this.handleChange('listName')}
-                
+                style={{width: '545px'}}
                 margin="normal"
                 variant="outlined"
               />

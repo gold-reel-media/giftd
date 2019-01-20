@@ -3,14 +3,15 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-// import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import InputAdornment from '@material-ui/core/InputAdornment';
-// import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+// import "./style.css"
 
 const styles = theme => ({
   container: {
@@ -39,6 +40,11 @@ function Transition(props) {
 class OutlinedTextFields extends React.Component {
   state = {
     open: false,
+    name: '',
+    price: '',
+    itemLink: '',
+    imageLink: '',
+    description: ''
   };
 
   handleClickOpen = () => {
@@ -47,6 +53,11 @@ class OutlinedTextFields extends React.Component {
 
   handleClose = () => {
     this.setState({ open: false });
+    //grab input
+    // this.props.addItem(this.state.name);
+    this.props.addItem(this.state)
+
+    // this.resetForm();
   };
 
   handleChange = name => event => {
@@ -55,12 +66,23 @@ class OutlinedTextFields extends React.Component {
     });
   };
 
+   //clear form
+   resetForm = () => {
+    this.setState({
+        name: '',
+        price: '',
+        itemLink: '',
+        imageLink: '',
+        description: ''
+    })
+  } 
+
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <Button style={{borderRadius:"100px"}} onClick={this.handleClickOpen}>
-          <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-vol-4/512/169-Add_charge_create_new_plus_positive_-512.png" height="200"/>
+       <Button style={{borderRadius:"100px"}} onClick={this.handleClickOpen}>
+        <i className="fas fa-plus-circle fa-10x"></i>
         </Button>
         <Dialog
           open={this.state.open}
@@ -78,7 +100,6 @@ class OutlinedTextFields extends React.Component {
               <TextField
                 id="outlined-name"
                 label="Name"
-                
                 value={this.state.name}
                 onChange={this.handleChange('name')}
                 margin="normal"
@@ -91,8 +112,8 @@ class OutlinedTextFields extends React.Component {
                 className={classNames(styles.backgroundColor, styles.textField)}
                 variant="outlined"
                 label="Price"
-                value={this.state.amount}
-                onChange={this.handleChange('amount')}
+                value={this.state.price}
+                onChange={this.handleChange('price')}
                 InputProps={{
                   startAdornment: <InputAdornment position="start">$</InputAdornment>,
                 }}
@@ -101,8 +122,8 @@ class OutlinedTextFields extends React.Component {
                 id="outlined-name"
                 label="Item Link"
                 fullWidth
-                value={this.state.name}
-                onChange={this.handleChange('name')}
+                value={this.state.itemLink}
+                onChange={this.handleChange('itemLink')}
                 margin="normal"
                 variant="outlined"
                 
@@ -111,8 +132,8 @@ class OutlinedTextFields extends React.Component {
                 id="outlined-name"
                 label="Image Link"
                 fullWidth
-                value={this.state.name}
-                onChange={this.handleChange('name')}
+                value={this.state.imageLink}
+                onChange={this.handleChange('imageLink')}
                 margin="normal"
                 variant="outlined"
                 
@@ -124,8 +145,8 @@ class OutlinedTextFields extends React.Component {
                 rowsMax="4"
                 // defaultValue="Default Value"
                 // className={classes.textField}
-                value={this.state.multiline}
-                onChange={this.handleChange('multiline')}
+                value={this.state.description}
+                onChange={this.handleChange('description')}
                 margin="normal"
                 variant="outlined"
                 style={{ width: "100%" }}
