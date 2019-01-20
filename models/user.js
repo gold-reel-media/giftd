@@ -5,7 +5,8 @@ module.exports = function(sequelize, Sequelize) {
         autoIncrement: true,
         primaryKey: true
       },
-      username: Sequelize.STRING
+      username: Sequelize.STRING,
+      profilename: Sequelize.STRING
     }); 
   
     return User;
