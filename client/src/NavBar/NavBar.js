@@ -25,13 +25,16 @@ class NavBar extends React.Component {
       lock.getUserInfo(accessToken, (err, data) => {
         if (err) return;
         console.log(data);
+        
         window.profile = data;
         this.setState({
-          signedIn: true
+          signedIn: true,
+          name: data.name
         });
+        console.log("state name" + data.name)
       });
     }
-
+    
     lock.on("authenticated", authResult => {
       // Use the token in authResult to getUserInfo() and save it to localStorage
       lock.getUserInfo(authResult.accessToken, (error, profile) => {
@@ -49,7 +52,8 @@ class NavBar extends React.Component {
         localStorage.setItem("profile", JSON.stringify(profile));
 
         this.setState({
-          signedIn: true
+          signedIn: true,
+          name: profile
         });
       });
     });
@@ -60,6 +64,7 @@ class NavBar extends React.Component {
   };
   login = () => {
     lock.show();
+    console.log("this state name",this.state.name)
   };
 
   logout = () => {
@@ -67,12 +72,13 @@ class NavBar extends React.Component {
     window.location = "/";
   };
 
+
   render() {
     return (
       <nav className="navbar navbar-dark bg-primary fixed-top">
         <Link className="navbar-brand" to="/">
-          Q&App
         </Link>
+        {this.state.name}
         {!this.state.signedIn && (
           <button className="btn btn-dark" onClick={this.login}>
             Sign In
