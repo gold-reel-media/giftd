@@ -13,15 +13,17 @@ class Button extends React.Component {
       border: "2px solid",
       borderColor: 'white',
       textAlign: "center",
-      marginBottom: "20%",
-      marginTop: "20%",
+      marginRight: "15px",
+      marginLeft: "15px",
       lineHeight: "150px",
-      transition: "all ease .2s",
+      transition: "all ease .4s",
       ':hover': {
         backgroundColor: "#0d9aaa",
         color: "white",
-        border: '2px solid',
+        border: '4px solid',
         borderColor: 'white',
+        width: "200px",
+        height: "200px",
       }
     };
 

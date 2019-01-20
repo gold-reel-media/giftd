@@ -3,15 +3,27 @@ import Parallax from "react-springy-parallax";
 import logo from "./giftd_logo_white.svg";
 import Layer1 from "./components/Layer1";
 import Layer3 from "./components/Layer3";
+import Layer4 from "./components/Layer4";
 
 class App extends React.Component {
   render() {
     const styles = {
-      fontFamily: "Menlo-Regular, Menlo, monospace",
+      fontFamily: 'Karla, sans-serif',
       fontSize: 20,
       lineHeight: "40px",
       textAlign: "center",
-      margin: '5px',
+      paddingRight: '10px',
+      color: "white",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    };
+    const pstyle = {
+      fontFamily: 'Karla, sans-serif',
+      fontSize: 25,
+      lineHeight: "55px",
+      textAlign: "center",
+      margin: "30px",
       color: "white",
       display: "flex",
       alignItems: "center",
@@ -55,19 +67,7 @@ class App extends React.Component {
           style={styles}
           onClick={() => this.refs.parallax.scrollTo(2)}
         >
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-          ab illo inventore veritatis et quasi architecto beatae vitae dicta
-          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-          qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
-          dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-          quia non numquam eius modi tempora incidunt ut labore et dolore magnam
-          aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-          exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
-          ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
-          ea voluptate velit esse quam nihil molestiae consequatur, vel illum
-          qui dolorem eum fugiat quo voluptas nulla pariatur?
+          <p style={pstyle}> Short description of the app goes here. We talk about how you can create a list and buy things for people who have made lists. Short description of the app goes here. We talk about how you can create a list and buy things for people who have made lists. Short description of the app goes here. We talk about how you can create a list and buy things for people who have made lists. </p>
         </Parallax.Layer>
 
         <Parallax.Layer
@@ -85,7 +85,7 @@ class App extends React.Component {
           style={styles}
           onClick={() => this.refs.parallax.scrollTo(0)}
         >
-          Here we put the about us
+          <Layer4 />
         </Parallax.Layer>
       </Parallax>
     );

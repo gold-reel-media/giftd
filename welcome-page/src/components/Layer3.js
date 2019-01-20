@@ -4,7 +4,7 @@ import Button from "./Button";
 class Layer3 extends React.Component {
     render() {
         const styles = {
-            fontFamily: 'Menlo-Regular, Menlo, monospace',
+            fontFamily: 'Karla, sans-serif',
             fontSize: 20,
             lineHeight: '40px',
             color: 'white',
@@ -14,11 +14,11 @@ class Layer3 extends React.Component {
 
         return <div>
             <Button> Find User </Button>
-            <br />
+            
             <Button> My Profile </Button>
-            <br />
+            
             <Button> Add List </Button>
-            <br />
+           
         </div>;
     }
 }

@@ -4,7 +4,7 @@ import React from "react";
 class Layer1 extends React.Component {
     render() {
         const styles = {
-            fontFamily: 'Menlo-Regular, Menlo, monospace',
+            fontFamily: 'Karla, sans-serif',
             fontSize: 20,
             lineHeight: '40px',
             color: 'white',
@@ -16,9 +16,7 @@ class Layer1 extends React.Component {
             <img src={logo} className="App-logo" alt="logo" style={{ width: "50vw", display: 'block', margin: 'auto' }} />
             <br />
             <p style={styles}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. 
+              Tagline goes here. 
             </p>
           </div>;
     }
