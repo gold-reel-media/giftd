@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Auth0Lock from "auth0-lock";
+import $ from "jquery";
 
 var lock = new Auth0Lock(
   "uPoNkl6EbS0CdIGluuMXmpi67AlmWLt7",
@@ -16,7 +17,6 @@ var lock = new Auth0Lock(
   }
 );
 
-
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
@@ -25,16 +25,16 @@ class NavBar extends React.Component {
       lock.getUserInfo(accessToken, (err, data) => {
         if (err) return;
         console.log(data);
-        
+        // console.log(accessToken)
+
         window.profile = data;
         this.setState({
           signedIn: true,
           name: data.name
         });
-        console.log("state name" + data.name)
       });
     }
-    
+
     lock.on("authenticated", authResult => {
       // Use the token in authResult to getUserInfo() and save it to localStorage
       lock.getUserInfo(authResult.accessToken, (error, profile) => {
@@ -42,42 +42,66 @@ class NavBar extends React.Component {
           // Handle error
           return;
         }
-    
+
         console.log(authResult);
         console.log(profile);
 
         window.profile = profile;
-     
+
         localStorage.setItem("accessToken", authResult.accessToken);
         localStorage.setItem("profile", JSON.stringify(profile));
 
         this.setState({
           signedIn: true,
-          name: profile
+          name: profile.name
         });
+
+        this.checkDB();
       });
     });
-    
   }
   state = {
     signedIn: false
   };
   login = () => {
     lock.show();
-    console.log("this state name",this.state.name)
+    // on login grab info from auth0 object and save name/email to db
+    //  this.checkDB()
   };
+
+  checkDB() {
+    console.log("checkdb test");
+    let obj = { username: window.profile.email }
+    $.ajax({
+      type: "GET",
+      url: "/api/getUser",
+      data: JSON.stringify(obj),
+      contentType: "application/json; charset=utf-8",
+      success: function(dbUser) {
+        console.log("dbuser " + dbUser)
+        // if (!dbUser) {
+        //   $.ajax({
+        //     type: "POST",
+        //     url: "/api/newUser",
+        //     data: {
+        //       username: window.profile.email,
+        //       profilename: window.profile.name
+        //     }
+        //   });
+        // }
+      }
+    });
+  }
 
   logout = () => {
     localStorage.removeItem("accessToken");
     window.location = "/";
   };
 
-
   render() {
     return (
       <nav className="navbar navbar-dark bg-primary fixed-top">
-        <Link className="navbar-brand" to="/">
-        </Link>
+        <Link className="navbar-brand" to="/" />
         {this.state.name}
         {!this.state.signedIn && (
           <button className="btn btn-dark" onClick={this.login}>
@@ -86,7 +110,7 @@ class NavBar extends React.Component {
         )}
         {this.state.signedIn && (
           <div>
-            <label className="mr-2 text-white">{}</label>
+            {/* <label className="mr-2 text-white">{}</label> */}
             <button className="btn btn-dark" onClick={this.logout}>
               Sign Out
             </button>

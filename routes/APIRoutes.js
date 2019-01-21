@@ -4,7 +4,8 @@ module.exports = function (app) {
 
     //get user object by passing it object containing username (user's email)
     app.get("/api/getUser", (req, res) => {
-        db.User.find({ where: {usernam: req.body.username}})
+        console.log(req.body)
+        db.User.findOne({ where: {username: req.body.username}})
             .then(user => res.status(200).json(user));
       });
 
