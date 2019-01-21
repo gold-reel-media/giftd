@@ -12,6 +12,7 @@ app.use(express.static("public"));
 
 // Define API routes here
 require("./routes/dbTestRoute.js")(app);
+require("./routes/APIRoutes.js")(app);
 
 // Send every other request to the React app
 // Define any API routes before this runs
