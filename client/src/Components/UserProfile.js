@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddListForm from './AddListForm/AddListForm';
 import Lists from './Lists/Lists';
+import FriendList from "./FriendProfile/FriendList"
 
 
 class UserProfile extends Component {
@@ -28,6 +29,9 @@ class UserProfile extends Component {
                 <ul className="lists">
                     {Object.keys(this.state.lists).map( key => <Lists key={key} details={this.state.lists}/>)}
                 </ul>
+                <FriendList />
+                <div>
+                </div>
             </div>
         );
     }
