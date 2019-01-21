@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserProfile from './Components/UserProfile';
 import ListPage from './Components/ListPage/ListPage';
 import {Route, withRouter} from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import NavBar from "./NavBar/NavBar"
 import Main from "./Main/Main"
 import './App.css';
@@ -41,6 +42,7 @@ class App extends Component {
         <UserProfile/>
         <Main />
         <Route exact path='/callback' component={Callback} />
+
 
       </div>
     );
