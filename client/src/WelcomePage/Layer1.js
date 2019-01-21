@@ -8,7 +8,7 @@ class Layer1 extends React.Component {
             fontSize: 20,
             lineHeight: '40px',
             color: 'white',
-            textAlign: 'center', 
+            textAlign: 'center',
             margin: '5%'
         }
 
@@ -16,9 +16,9 @@ class Layer1 extends React.Component {
             <img src={logo} className="App-logo" alt="logo" style={{ width: "50vw", display: 'block', margin: 'auto' }} />
             <br />
             <p style={styles}>
-              Tagline goes here. 
+                Tagline goes here.
             </p>
-          </div>;
+        </div>;
     }
 }
 

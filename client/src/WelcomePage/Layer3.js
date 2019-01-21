@@ -14,11 +14,11 @@ class Layer3 extends React.Component {
 
         return <div>
             <Button> Find User </Button>
-            
+
             <Button> My Profile </Button>
-            
+
             <Button> Add List </Button>
-           
+
         </div>;
     }
 }
