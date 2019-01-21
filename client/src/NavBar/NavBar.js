@@ -72,24 +72,18 @@ class NavBar extends React.Component {
   checkDB() {
     console.log("checkdb test");
     let obj = { username: window.profile.email }
-    $.ajax({
-      type: "GET",
-      url: "/api/getUser",
-      data: JSON.stringify(obj),
-      contentType: "application/json; charset=utf-8",
-      success: function(dbUser) {
-        console.log("dbuser " + dbUser)
-        // if (!dbUser) {
-        //   $.ajax({
-        //     type: "POST",
-        //     url: "/api/newUser",
-        //     data: {
-        //       username: window.profile.email,
-        //       profilename: window.profile.name
-        //     }
-        //   });
-        // }
-      }
+    console.log("obj in NavBar: " + JSON.stringify(obj));
+    $.get("/api/getUser/" + window.profile.email).then( dbUser => {
+        if (!dbUser) {
+          $.ajax({
+            type: "POST",
+            url: "/api/newUser",
+            data: {
+              username: window.profile.email,
+              profilename: window.profile.name
+            }
+          });
+        }
     });
   }
 
