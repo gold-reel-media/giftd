@@ -2,6 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Auth from "../Auth";
 import Auth0Lock from "auth0-lock";
+import logo from "../giftd_logo_black.svg";
 // auth0Client
 // const auth = new Auth();
 
@@ -72,12 +73,12 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-primary fixed-top">
+      <nav className="navbar navbar-light bg-light fixed-top">
         <Link className="navbar-brand" to="/">
-          Q&App
+          <img src={logo} className="App-logo" alt="logo" style={{height: "50px"}} />
         </Link>
         {!this.state.signedIn && (
-          <button className="btn btn-dark" onClick={this.login}>
+          <button className="btn btn-light" onClick={this.login}>
             Sign In
           </button>
         )}
