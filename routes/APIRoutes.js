@@ -3,8 +3,9 @@ const db = require("../models");
 module.exports = function (app) { 
 
     //get user object by passing it object containing username (user's email)
-    app.get("/api/getUser", (req, res) => {
-        db.User.find({ where: {usernam: req.body.username}})
+    app.get("/api/getUser/:username", (req, res) => {
+        // console.log(req.params.username);
+        db.User.findOne({ where: {username: req.params.username}})
             .then(user => res.status(200).json(user));
       });
 
@@ -63,7 +64,9 @@ module.exports = function (app) {
     app.post("/api/newItem", (req, res) => {
         db.Item.create({ 
             name: req.body.item.name,
-            link: req.body.item.link,
+            imageLink: req.body.item.imageLink,
+            itemLink: req.body.item.itemLink,
+            description: req.body.item.description,
             price: req.body.item.price,
             status: "false"
         }).then(item => {

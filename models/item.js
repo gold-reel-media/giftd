@@ -6,7 +6,9 @@ module.exports = function(sequelize, Sequelize) {
         primaryKey: true
       },
       name: Sequelize.STRING,
-      link: Sequelize.STRING,
+      itemLink: Sequelize.STRING,
+      imageLink: Sequelize.STRING,
+      description: Sequelize.STRING,
       price: Sequelize.FLOAT,
       status: Sequelize.BOOLEAN,
       user: Sequelize.INTEGER
