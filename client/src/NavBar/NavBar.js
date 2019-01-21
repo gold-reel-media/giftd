@@ -20,7 +20,7 @@ var lock = new Auth0Lock(
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = sessionStorage.getItem("accessToken");
     if (accessToken) {
       lock.getUserInfo(accessToken, (err, data) => {
         if (err) return;
@@ -36,7 +36,7 @@ class NavBar extends React.Component {
     }
 
     lock.on("authenticated", authResult => {
-      // Use the token in authResult to getUserInfo() and save it to localStorage
+      // Use the token in authResult to getUserInfo() and save it to sessionStorage
       lock.getUserInfo(authResult.accessToken, (error, profile) => {
         if (error) {
           // Handle error
@@ -48,8 +48,8 @@ class NavBar extends React.Component {
 
         window.profile = profile;
 
-        localStorage.setItem("accessToken", authResult.accessToken);
-        localStorage.setItem("profile", JSON.stringify(profile));
+        sessionStorage.setItem("accessToken", authResult.accessToken);
+        sessionStorage.setItem("profile", JSON.stringify(profile));
 
         this.setState({
           signedIn: true,
@@ -65,8 +65,6 @@ class NavBar extends React.Component {
   };
   login = () => {
     lock.show();
-    // on login grab info from auth0 object and save name/email to db
-    //  this.checkDB()
   };
 
   checkDB() {
@@ -88,7 +86,7 @@ class NavBar extends React.Component {
   }
 
   logout = () => {
-    localStorage.removeItem("accessToken");
+    sessionStorage.removeItem("accessToken");
     window.location = "/";
   };
 
