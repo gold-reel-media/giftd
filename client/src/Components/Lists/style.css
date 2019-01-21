@@ -1,0 +1,10 @@
+.list-container {
+    width: 40%;
+    border: 1px solid black;
+
+}
+
+li {
+    list-style-type: none;
+}
+

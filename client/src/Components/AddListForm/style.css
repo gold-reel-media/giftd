@@ -1,0 +1,12 @@
+.MuiDialog-paperWidthSm-38 {
+    width: 700px;
+}
+
+.MuiOutlinedInput-root-142 {
+    position: relative;
+    width: 545px;
+}
+
+button:focus {
+    outline:0;
+}
