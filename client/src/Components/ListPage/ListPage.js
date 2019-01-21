@@ -12,6 +12,7 @@ class ListPage extends Component {
         const items = {...this.state.items};
         //add new item to items
          items[`item`] = item;
+         console.log(items)
          //set new items object to state
          this.setState({
              items

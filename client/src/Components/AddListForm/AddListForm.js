@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -6,6 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
+import axios from "axios";
 import './style.css';
 
 
@@ -14,17 +15,29 @@ function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
-class AlertDialogSlide extends React.Component {
+class AlertDialogSlide extends Component {
   state = {
     open: false,
+    lists: [],
     listName: ""
   };
 
+  componentDidMount() {
+    this.loadLists();
+  };
 
-  handleChange = listName => event => {
+  loadLists = () => {
+    axios.get("/api/lists")
+    .then(res => 
+      this.setState({ lists: res.data, listName: ""}))
+      .catch(err => console.log(err))
+  }
+
+
+  handleChange = name => event => {
     this.setState({
-      [listName]: event.target.value,
-    });    
+      [name]: event.target.value,
+    });
   };
 
 
@@ -33,23 +46,23 @@ class AlertDialogSlide extends React.Component {
   };
 
    //clear form
-   resetForm = () => {
-    this.setState({
-      listName: " "
-    })
-  }  
+  //  resetForm = () => {
+  //   this.setState({
+  //     listName: " "
+  //   })
+  // }  
 
-  handleClose = () => {
+  handleClose = (event) => {
+    event.preventDefault();
     this.setState({ open: false });
-    //grab input
-    this.props.addList(this.state.listName)
-    this.resetForm();
+    if (this.state.listName) {
+      axios.post("/api/lists", {listName: this.state.listName})
+      .then(res => this.loadLists())
+      .catch(err => console.log(err));
+    }
   };
     
-    
-    
- 
-
+  
   render() {
     const { classes } = this.props;
     return (
