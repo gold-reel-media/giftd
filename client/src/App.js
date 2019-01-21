@@ -3,7 +3,6 @@ import UserProfile from './Components/UserProfile';
 import ListPage from './Components/ListPage/ListPage';
 import {Route, withRouter} from 'react-router-dom';
 import NavBar from "./NavBar/NavBar"
-import Header from "./Header/Header"
 import Main from "./Main/Main"
 import './App.css';
 // import auth0Client from './Auth';
@@ -39,7 +38,6 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <Header />
         <UserProfile/>
         <Main />
         <Route exact path='/callback' component={Callback} />
