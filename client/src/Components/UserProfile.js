@@ -17,6 +17,7 @@ class UserProfile extends Component {
          this.setState({
              lists
          })
+         console.log("window"+window)
     }
     render() {
         return (
