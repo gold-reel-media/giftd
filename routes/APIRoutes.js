@@ -20,9 +20,9 @@ module.exports = function (app) {
         db.Item.find({ where: {itemid: req.body.itemid}})
             .then(item => res.status(200).json(item));
       });
-    //get user's wishlists provided object containing userid
-    app.get("/api/getWishlists", (req, res) => {
-        db.User.find({ where: {userid: req.body.userid}})
+    //get user's wishlists provided object containing username
+    app.get("/api/getWishlists/:username", (req, res) => {
+        db.User.find({ where: {username: req.body.username}})
             .then(user => user.getWishlists().then(wishlist => res.status(200).json(wishlist)))
       });
 
@@ -52,7 +52,7 @@ module.exports = function (app) {
     //passing it wishlist object containing new info and user object of user it will belong to
     app.post("/api/newWishlist", (req, res) => {
         db.Wishlist.create({  name: req.body.wishlist.name }).then(wishlist => {
-            db.User.find({where: {userid: req.body.user.userid }}).then(user => {
+            db.User.find({where: {username: req.body.user.username }}).then(user => {
                 user.addWishlists([wishlist]);
                 res.status(200).json(wishlist);
             });
@@ -94,7 +94,7 @@ module.exports = function (app) {
         db.Item.find({where: {itemid: req.body.item.itemid}}).then(item => {
             var newStatus = !item.status;       //get item's current status and changes it to newStatus (opposite of current status)
             var user = null;
-            if(newStatus){user = req.body.user.userid}  //if item's new status is true (as in it's now reserved) user field in item is updated to userid of user who reserved it
+            if(newStatus){user = req.body.user.username}  //if item's new status is true (as in it's now reserved) user field in item is updated to userid of user who reserved it
             item.update({status: newStatus, user: user}).then(res.status(200)); //otherwise, user is null because it not reserved by anyone
         })
     })
