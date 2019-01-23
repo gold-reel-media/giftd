@@ -1,0 +1,14 @@
+.friend-list{
+    border: 2px dotted grey;
+    width: 35%;
+    margin: 2%;
+}
+
+.friend{
+    color: purple;
+    font-size: 22px;
+}
+
+.username{
+    color: blue;
+}

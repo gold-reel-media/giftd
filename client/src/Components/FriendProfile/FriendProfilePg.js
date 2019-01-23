@@ -3,12 +3,12 @@ import React, { Component } from "react"
 import { light } from '@material-ui/core/styles/createPalette';
 // import './style.css';
 
-class FriendProfile extends Component() {
-    render(){
+function FriendProfilePg() {
+    // render(){
         return(
             <div>
                 <div>
-                    <h1>MY NAME</h1>
+                    <p className="username">MY NAME</p>
                 </div>
                 <div>
                     HERE ARE ALL MY LISTS
@@ -16,7 +16,7 @@ class FriendProfile extends Component() {
                 </div>
             </div>
         )
-    }
+    // }
 }
 
-export default FriendProfile
+export default FriendProfilePg

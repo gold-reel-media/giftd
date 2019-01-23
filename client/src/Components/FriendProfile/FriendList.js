@@ -1,29 +1,48 @@
-import React, { Component } from "react";
-import { light } from "@material-ui/core/styles/createPalette";
-// import './style.css';
-// import FriendProfilePg from "./FriendProfilePg"
+import React, { Component } from 'react';
+import $ from "jquery";
+import './style.css';
 
-class FriendList extends Component() {
-  constructor(props) {
-    super(props);
+class FriendList extends Component {
 
-    this.state = {
-      orderBy: "name",
-      order: "ascending"
-    };
-  }
-  render() {
-    return (
-      <div>
-        <ul>
-          <li>
-            FRIENDS I HAVE SO MANY
-            {/* <FriendProfilePg /> */}
-          </li>
-        </ul>
-      </div>
-    );
-  }
+    state = {
+        friends: []
+    }
+
+    componentDidMount() {
+        this.getFriends();
+      }
+    
+    
+    //   // call to database to find friends in database
+      getFriends = () => {
+        let username = "m.a.gallagher09@gmail.com";
+        $.get("/api/getFriends/" + username).then(res => {
+            let frnd = res;
+            this.setState({ friends: frnd })
+    
+            console.log("test " + JSON.stringify(res[0].profilename))
+        });
+      };
+      
+    
+    
+    render() {
+
+        return(
+            <div className="friend-list">
+                <ul>
+                    <li className="friend">Your Friends</li>
+                    <li>
+                   {(this.state.friends).map(frnd => (
+                       frnd.profilename
+                   ))}
+            
+
+                    </li>
+                </ul>
+            </div>
+        )
+    }
 }
 
-export default FriendList;
+export default FriendList
