@@ -4,9 +4,13 @@
 
 .MuiOutlinedInput-root-142 {
     position: relative;
-    width: 545px;
+    /* width: 545px; */
 }
 
 button:focus {
     outline:0;
+}
+
+.MuiInputBase-input-165 {
+    border-top-color: purple !important;
 }
