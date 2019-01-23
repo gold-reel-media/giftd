@@ -4,6 +4,7 @@ require("dotenv").config();
 module.exports = {
   development: {
     username: "root",
+    password: "root",
     database: "giftd_db",
     host: "localhost",
     dialect: "mysql"
