@@ -6,7 +6,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
-import axios from "axios";
+import { List, ListItem } from "../Lists/Lists";
+import { Link } from "react-router-dom";
+import $ from "jquery";
 import './style.css';
 
 
@@ -24,14 +26,19 @@ class AlertDialogSlide extends Component {
 
   componentDidMount() {
     this.loadLists();
+    console.log('mounted')
   };
 
   loadLists = () => {
-    axios.get("/api/lists")
-    .then(res => 
-      this.setState({ lists: res.data, listName: ""}))
-      .catch(err => console.log(err))
-  }
+    let profile = JSON.parse(sessionStorage.getItem("profile"));
+    console.log('loading')
+    $.get("/api/getWishlists/" + profile.email).then( res => {
+      console.log(res);
+      this.setState({ lists: res, listName: ""});
+      console.log(this.state);
+    })
+    .catch(err => console.log(err));
+  };
 
 
   handleChange = name => event => {
@@ -55,11 +62,22 @@ class AlertDialogSlide extends Component {
   handleClose = (event) => {
     event.preventDefault();
     this.setState({ open: false });
+    console.log(this.state)
+    let profile = JSON.parse(sessionStorage.getItem("profile"));
+    let obj = {
+      name: this.state.listName,
+      username: profile.email
+    }
     if (this.state.listName) {
-      axios.post("/api/lists", {listName: this.state.listName})
-      .then(res => this.loadLists())
+      $.ajax({
+        type: "POST",
+        url: "/api/newWishlist",
+        data: obj
+      })
+      .then(this.loadLists)
       .catch(err => console.log(err));
     }
+
   };
     
   
@@ -67,6 +85,7 @@ class AlertDialogSlide extends Component {
     const { classes } = this.props;
     return (
       <div>
+      <div className='add-list-form'>
         <Button style={{borderRadius:"100px"}} onClick={this.handleClickOpen}>
         <i className="fas fa-plus-circle fa-10x"></i>
         </Button>
@@ -102,6 +121,25 @@ class AlertDialogSlide extends Component {
             
           </DialogActions>
         </Dialog>
+      </div>
+      <div className="lists">
+      {this.state.lists.length ? (
+        <List>
+         {this.state.lists.map(list => (
+           <ListItem key={list.wishlistId}>
+            <Link to={'/list/' + list.wishlistId}>
+              <strong>
+                {list.name}
+              </strong>
+            </Link>
+           </ListItem>
+         ))}
+        </List>
+      ) : (
+        <h3>No Lists to Display</h3>
+      )}
+        
+      </div>
       </div>
     );
   }

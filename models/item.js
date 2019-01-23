@@ -11,7 +11,7 @@ module.exports = function(sequelize, Sequelize) {
       description: Sequelize.STRING,
       price: Sequelize.FLOAT,
       status: Sequelize.BOOLEAN,
-      user: Sequelize.INTEGER
+      user: Sequelize.STRING
     }); 
   
     return Item;
