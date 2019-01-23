@@ -32,13 +32,9 @@ class FriendList extends Component {
             <div className="friend-list">
                 <ul>
                     <li className="friend">Your Friends</li>
-                    <li>
                    {(this.state.friends).map(frnd => (
-                       frnd.profilename
+                     <li> {frnd.profilename} </li>
                    ))}
-            
-
-                    </li>
                 </ul>
             </div>
         )
