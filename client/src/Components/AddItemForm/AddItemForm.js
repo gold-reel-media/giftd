@@ -55,7 +55,7 @@ class OutlinedTextFields extends React.Component {
     this.setState({ open: false });
     //grab input
     // this.props.addItem(this.state.name);
-    this.props.addItem(this.state)
+
 
     // this.resetForm();
   };

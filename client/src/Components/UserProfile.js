@@ -27,13 +27,16 @@ class UserProfile extends Component {
                 <h1>Profile Page</h1>
                 <h2>Add New List</h2>
                 <AddListForm addList={this.addList}/>
+                {/* <ul className="lists">
                 <ul className="lists">
                     {Object.keys(this.state.lists).map( key => 
                     <Link to={"/list"}>
                     <Lists key={key} details={this.state.lists}/>
                   </Link>
                   )}
-                </ul>
+
+                </ul> */}
+
             </div>
         );
     }
