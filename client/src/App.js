@@ -38,8 +38,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <NavBar />
-        <UserProfile/>
+        <NavBar />
+        {/* <UserProfile/>
         <Main />
         <Route exact path='/callback' component={Callback} /> */}
         <SearchPage />
