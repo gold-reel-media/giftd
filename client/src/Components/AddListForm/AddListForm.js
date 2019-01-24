@@ -25,20 +25,20 @@ class AlertDialogSlide extends Component {
   };
 
   componentDidMount() {
-    this.loadLists();
+    // this.loadLists();
     console.log('mounted')
   };
 
-  loadLists = () => {
-    let profile = JSON.parse(sessionStorage.getItem("profile"));
-    console.log('loading')
-    $.get("/api/getWishlists/" + profile.email).then( res => {
-      console.log(res);
-      this.setState({ lists: res, listName: ""});
-      console.log(this.state);
-    })
-    .catch(err => console.log(err));
-  };
+  // loadLists = () => {
+  //   let profile = JSON.parse(sessionStorage.getItem("profile"));
+  //   console.log('loading')
+  //   $.get("/api/getWishlists/" + profile.email).then( res => {
+  //     console.log(res);
+  //     this.setState({ lists: res, listName: ""});
+  //     console.log(this.state);
+  //   })
+  //   .catch(err => console.log(err));
+  // };
 
 
   handleChange = name => event => {
@@ -59,26 +59,26 @@ class AlertDialogSlide extends Component {
   //   })
   // }  
 
-  handleClose = (event) => {
-    event.preventDefault();
-    this.setState({ open: false });
-    console.log(this.state)
-    let profile = JSON.parse(sessionStorage.getItem("profile"));
-    let obj = {
-      name: this.state.listName,
-      username: profile.email
-    }
-    if (this.state.listName) {
-      $.ajax({
-        type: "POST",
-        url: "/api/newWishlist",
-        data: obj
-      })
-      .then(this.loadLists)
-      .catch(err => console.log(err));
-    }
+  // handleClose = (event) => {
+  //   event.preventDefault();
+  //   this.setState({ open: false });
+  //   console.log(this.state)
+  //   let profile = JSON.parse(sessionStorage.getItem("profile"));
+  //   let obj = {
+  //     name: this.state.listName,
+  //     username: profile.email
+  //   }
+  //   if (this.state.listName) {
+  //     $.ajax({
+  //       type: "POST",
+  //       url: "/api/newWishlist",
+  //       data: obj
+  //     })
+  //     .then(this.loadLists)
+  //     .catch(err => console.log(err));
+  //   }
 
-  };
+  // };
     
   
   render() {
