@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import App from '../App';
 import ListPage from './ListPage/ListPage';
 import AddItemForm from './AddItemForm/AddItemForm';
+import FriendProfilePg from './FriendProfile/FriendProfilePg';
 
 
 
@@ -12,6 +13,7 @@ const Router = () => (
         <Switch>
             <Route exact path="/" component={App}/>
             <Route exact path="/list/:wishlistId" component={AddItemForm} />
+            <Route exact path="/:username" component={FriendProfilePg} />
         </Switch>
     </BrowserRouter>
 );
