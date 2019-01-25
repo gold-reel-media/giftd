@@ -35,8 +35,10 @@ module.exports = function (app) {
 
     //get user's friendslist provided object containing username
     app.get("/api/getFriends/:username", (req, res) => {
-        db.User.find({ where: {username: req.body.username} })
-            .then(friends => friends.getFriend2().then(friend => res.status(200).json(friend)))
+        db.User.findOne({ where: {username: req.params.username} })
+            .then(
+                 friends => {friends.getFriend2().then(friend => {res.status(200).json(friend)});}
+            )
     });
     
     //create a user, passing it object with info for new user

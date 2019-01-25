@@ -6,12 +6,12 @@ import AddItemForm from './AddItemForm/AddItemForm';
 
 
 
+
 const Router = () => (
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={App}/>
             <Route exact path="/list/:wishlistId" component={AddItemForm} />
-            
         </Switch>
     </BrowserRouter>
 );

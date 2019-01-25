@@ -24,7 +24,7 @@ class NavBar extends React.Component {
     if (accessToken) {
       lock.getUserInfo(accessToken, (err, data) => {
         if (err) return;
-        console.log(data);
+        // console.log(data);
         // console.log(accessToken)
 
         window.profile = data;
@@ -43,8 +43,8 @@ class NavBar extends React.Component {
           return;
         }
 
-        console.log(authResult);
-        console.log(profile);
+        // console.log(authResult);
+        // console.log(profile);
 
         window.profile = profile;
 
