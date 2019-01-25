@@ -108,7 +108,7 @@ class NavBar extends React.Component {
         {this.state.signedIn && (
           <div>
             {/* <label className="mr-2 text-white">{}</label> */}
-            <button className="btn btn-dark" onClick={this.logout}>
+            <button className="btn btn-light" onClick={this.logout}>
               Sign Out
             </button>
           </div>

@@ -35,10 +35,11 @@ class App extends Component {
     }
 
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         <NavBar />
-        <Welcome />
+        <Welcome history={this.props.history}/>
         <Route exact path='/callback' component={Callback} />
 
 

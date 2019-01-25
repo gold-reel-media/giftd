@@ -28,6 +28,8 @@ class Welcome extends React.Component {
             alignItems: "center",
             justifyContent: "center"
         };
+
+        console.log(this.props)
         return (
             <Parallax ref="parallax" pages={4}>
                 <Parallax.Layer
@@ -66,7 +68,7 @@ class Welcome extends React.Component {
                     style={styles}
                     onClick={() => this.refs.parallax.scrollTo(2)}
                 >
-                    <p style={pstyle}> Short description of the app goes here. We talk about how you can create a list and buy things for people who have made lists. Short description of the app goes here. We talk about how you can create a list and buy things for people who have made lists. Short description of the app goes here. We talk about how you can create a list and buy things for people who have made lists. </p>
+                    <p style={pstyle}> Short description of the app goes here. We talk about how you can create a list and buy things for people who have made lists. Short description of the app goes here. We talk about how you can create a list and buy things for people who have made lists.  </p>
                 </Parallax.Layer>
 
                 <Parallax.Layer
@@ -75,7 +77,7 @@ class Welcome extends React.Component {
                     style={styles}
                     onClick={() => this.refs.parallax.scrollTo(3)}
                 >
-                    <Layer3 />
+                    <Layer3 history={this.props.history}/>
                 </Parallax.Layer>
 
                 <Parallax.Layer
