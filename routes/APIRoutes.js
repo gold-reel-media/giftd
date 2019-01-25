@@ -10,14 +10,14 @@ module.exports = function (app) {
       });
 
     //get wishlist object by passing it object containing wishlistid
-    app.get("/api/getWishlist", (req, res) => {
-        db.Wishlist.find({ where: {wishlistid: req.body.wishlistid}})
+    app.get("/api/getWishlist/:wishlistid", (req, res) => {
+        db.Wishlist.find({ where: {wishlistId: req.params.wishlistid}})
             .then(wishlist => res.status(200).json(wishlist));
       });
 
     //get item object by passing it object containing itemid
-    app.get("/api/getItem", (req, res) => {
-        db.Item.find({ where: {itemid: req.body.itemid}})
+    app.get("/api/getItem/:itemid", (req, res) => {
+        db.Item.find({ where: {itemId: req.params.itemid}})
             .then(item => res.status(200).json(item));
       });
     //get user's wishlists provided object containing username
@@ -27,9 +27,9 @@ module.exports = function (app) {
             //.then(user => console.log("user obj: " + user));
       });
 
-    //get wishlist's items provided object containing wishlistis
-    app.get("/api/getItems", (req, res) => {
-        db.Wishlist.find({ where: {wishlistid: req.body.wishlistid} })
+    //get wishlist's items provided object containing wishlistid
+    app.get("/api/getItems/:wishlistId", (req, res) => {
+        db.Wishlist.find({ where: {wishlistId: req.params.wishlistId} })
             .then(wishlist => wishlist.getItems().then(items => res.status(200).json(items)))
     });
 
@@ -74,7 +74,7 @@ module.exports = function (app) {
             price: req.body.price,
             status: "false"
         }).then(item => {
-            db.Wishlist.find({where: {wishlistid: req.body.wishlistid}} )
+            db.Wishlist.find({where: {wishlistId: req.body.wishlistId}} )
                 .then(wishlist => {
                     wishlist.addItems([item]);
                     res.status(200).json(item);
