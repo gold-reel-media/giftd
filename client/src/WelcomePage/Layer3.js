@@ -133,13 +133,12 @@ class Layer3 extends React.Component {
                 </button>
             )}
             {this.state.signedIn && (
-              
                     <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/search">
+                        {/* This needs to be changed to user search page once we have it */}
                         <Link to={"/list"}>
                             <Button> Find User </Button>
                         </Link>
                     </button>
-               
             )}
             
             {!this.state.signedIn && (
@@ -148,13 +147,11 @@ class Layer3 extends React.Component {
                 </button>
             )}
             {this.state.signedIn && (
-               
                     <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/profile">
                         <Link to={"/profile"}>
                             <Button> My Profile </Button>
                         </Link>
                     </button>
-               
             )}
 
 
@@ -164,13 +161,11 @@ class Layer3 extends React.Component {
                 </button>
             )}
             {this.state.signedIn && (
-            
                     <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/profile">
                         <Link to={"/list"}>
                             <Button> Add List </Button>
                         </Link>
                     </button>
-        
             )}
         </div>
         )

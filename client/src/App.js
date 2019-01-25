@@ -41,8 +41,6 @@ class App extends Component {
         <NavBar />
         <Welcome history={this.props.history}/>
         <Route exact path='/callback' component={Callback} />
-
-
       </div>
     );
   }
