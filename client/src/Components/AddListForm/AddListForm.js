@@ -52,12 +52,12 @@ class AlertDialogSlide extends Component {
     this.setState({ open: true });
   };
 
-   //clear form
-  //  resetForm = () => {
-  //   this.setState({
-  //     listName: " "
-  //   })
-  // }  
+  //  clear form
+   resetForm = () => {
+    this.setState({
+      listName: " "
+    })
+  }  
 
   handleClose = (event) => {
     event.preventDefault();
