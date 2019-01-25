@@ -79,6 +79,7 @@ class OutlinedTextFields extends React.Component {
   handleClose = event => {
     event.preventDefault();
     this.setState({ open: false });
+
     console.log(this.state);
     let obj = {
       name: this.state.name,
@@ -97,6 +98,7 @@ class OutlinedTextFields extends React.Component {
         .then(this.loadItems)
         .catch(err => console.log(err));
     }
+
   };
 
   handleChange = name => event => {

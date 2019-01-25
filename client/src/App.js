@@ -40,6 +40,7 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <UserProfile/>
+        {/* Friend Profile */}
         <Main />
         <Route exact path='/callback' component={Callback} />
 
