@@ -25,6 +25,8 @@ class UserProfile extends Component {
   };
 
   render() {
+    let profile = this.props.match.params.username;
+
     return (
       <div>
           <NavBar />
@@ -36,7 +38,7 @@ class UserProfile extends Component {
             <List>
               {this.state.lists.map(list => (
                 <ListItem key={list.wishlistId}>
-                  <Link to={"/list/" + list.wishlistId}>
+                  <Link to={profile + "/" + list.wishlistId}>
                     <strong>{list.name}</strong>
                   </Link>
                 </ListItem>
