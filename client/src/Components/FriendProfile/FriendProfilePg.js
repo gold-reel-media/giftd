@@ -16,13 +16,10 @@ class UserProfile extends Component {
   }
 
   loadLists = () => {
-    let profile = JSON.parse(sessionStorage.getItem("profile"));
-    console.log("loading");
-    $.get("/api/getWishlists/" + profile.email)
+    let profile = this.props.match.params.username;
+    $.get("/api/getWishlists/" + profile)
       .then(res => {
-        console.log(res);
         this.setState({ lists: res, listName: "" });
-        console.log(this.state);
       })
       .catch(err => console.log(err));
   };
