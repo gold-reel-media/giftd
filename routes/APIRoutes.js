@@ -10,14 +10,14 @@ module.exports = function (app) {
       });
 
     //get wishlist object by passing it object containing wishlistid
-    app.get("/api/getWishlist", (req, res) => {
-        db.Wishlist.find({ where: {wishlistid: req.body.wishlistid}})
+    app.get("/api/getWishlist/:wishlistid", (req, res) => {
+        db.Wishlist.find({ where: {wishlistid: req.params.wishlistid}})
             .then(wishlist => res.status(200).json(wishlist));
       });
 
     //get item object by passing it object containing itemid
-    app.get("/api/getItem", (req, res) => {
-        db.Item.find({ where: {itemid: req.body.itemid}})
+    app.get("/api/getItem/:itemid", (req, res) => {
+        db.Item.find({ where: {itemid: req.params.itemid}})
             .then(item => res.status(200).json(item));
       });
     //get user's wishlists provided object containing username
@@ -27,8 +27,8 @@ module.exports = function (app) {
       });
 
     //get wishlist's items provided object containing wishlistis
-    app.get("/api/getItems", (req, res) => {
-        db.Wishlist.find({ where: {wishlistid: req.body.wishlistid} })
+    app.get("/api/getItems/:wishlistid", (req, res) => {
+        db.Wishlist.find({ where: {wishlistid: req.params.wishlistid} })
             .then(wishlist => wishlist.getItems().then(items => res.status(200).json(items)))
     });
 
@@ -78,13 +78,24 @@ module.exports = function (app) {
         });
     });
 
-    //add two users as friends, passing two user objects
+    //add two users as friends, passing two usernames
     app.post("/api/addFriends", (req, res) => {
-        db.User.find({ where: { username: req.body.friend1.username } }).then(friend1 => {
-            db.User.find({ where: { username: req.body.friend2.username } }).then(friend2 => {
+        db.User.find({ where: { username: req.body.friend1 } }).then(friend1 => {
+            db.User.find({ where: { username: req.body.friend2 } }).then(friend2 => {
                 friend1.addFriend2([friend2]);
                 friend2.addFriend2([friend1]);
-                res.status(200);
+                res.sendStatus(200);
+            });
+        });
+    });
+
+    //remove two users as friends provided two usernames
+    app.post("/api/removeFriends", (req, res) => {
+        db.User.find({ where: { username: req.body.friend1 } }).then(friend1 => {
+            db.User.find({ where: { username: req.body.friend2 } }).then(friend2 => {
+                friend1.removeFriend2([friend2]);
+                friend2.removeFriend2([friend1]);
+                res.sendStatus(200);
             });
         });
     });
@@ -95,7 +106,7 @@ module.exports = function (app) {
             var newStatus = !item.status;       //get item's current status and changes it to newStatus (opposite of current status)
             var user = null;
             if(newStatus){user = req.body.user.username}  //if item's new status is true (as in it's now reserved) user field in item is updated to userid of user who reserved it
-            item.update({status: newStatus, user: user}).then(res.status(200)); //otherwise, user is null because it not reserved by anyone
+            item.update({status: newStatus, user: user}).then(res.sendStatus(200)); //otherwise, user is null because it not reserved by anyone
         })
     })
 };

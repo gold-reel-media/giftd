@@ -5,22 +5,44 @@ import $ from 'jquery';
 import SearchResults from './SearchResults';
 
 class SearchPage extends Component {
-    
-    state = {
-        textFieldValue: "",
-        searchResult: {
-            username: "not found",
-            profilename: "not found"
-        },
-        alreadyFriends: false,
-        loggedUser: JSON.parse(sessionStorage.getItem("profile")).email
+    constructor(){
+        super();
+        this.state = {
+            textFieldValue: "",
+            searchResult: {
+                username: "not found",
+                profilename: "not found"
+            },
+            alreadyFriends: false,
+            loggedUser: null
+        }
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.checkFriends = this.checkFriends.bind(this);
     }
 
+    componentDidMount = () => {
+        if(JSON.parse(sessionStorage.getItem("profile"))){
+            this.setState({
+                loggedUser: JSON.parse(sessionStorage.getItem("profile")).email
+            })
+        }
+    }
 
     handleTextChange = (e) => {
         this.setState({
             textFieldValue: e.target.value
         });
+    }
+
+    checkFriends = (friends, friend) => {
+        console.log("reached check friends");
+        var found = false;
+        for(let i = 0; i < friends.length; i++){
+            if(friends[i].username === friend){
+                found = true;
+            }
+        }
+        return found;
     }
 
     handleSubmit = () => {
@@ -30,8 +52,11 @@ class SearchPage extends Component {
                     searchResult: result
                 });
                 $.get("/api/getFriends/" + this.state.loggedUser).then(friends => {
-                    console.log(friends);
-                    if(this.state.searchResult in friends){
+                    var areFriends = this.checkFriends(friends, this.state.searchResult.username);
+                    // console.log("friends: " + JSON.stringify(friends));
+                    // console.log("search result: " + this.state.searchResult.username)
+                    console.log("search result in friends:" + areFriends);
+                    if(areFriends){
                         this.setState({
                             alreadyFriends: true
                         });
@@ -65,7 +90,14 @@ class SearchPage extends Component {
               <Button variant="contained" className="classes.button" onClick={this.handleSubmit}>
                 Search
                 </Button>
-                {this.state.searchResult.username !== "not found" && <SearchResults profilename={this.state.searchResult.profilename} username={this.state.searchResult.username} alreadyFriends={this.state.alreadyFriends}/>}
+                {this.state.searchResult.username !== "not found" && 
+                    <SearchResults 
+                        profilename={this.state.searchResult.profilename} 
+                        username={this.state.searchResult.username} 
+                        alreadyFriends={this.state.alreadyFriends}
+                        loggedUser={this.state.loggedUser}
+                    />
+                }
               </div>
           );
     }
