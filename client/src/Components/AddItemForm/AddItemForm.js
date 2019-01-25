@@ -94,7 +94,7 @@ class OutlinedTextFields extends React.Component {
         url: "/api/newItem",
         data: obj
       })
-        .then(this.loadLists)
+        .then(this.loadItems)
         .catch(err => console.log(err));
     }
   };
