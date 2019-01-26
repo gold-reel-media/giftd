@@ -53,8 +53,6 @@ class SearchPage extends Component {
                 });
                 $.get("/api/getFriends/" + this.state.loggedUser).then(friends => {
                     var areFriends = this.checkFriends(friends, this.state.searchResult.username);
-                    // console.log("friends: " + JSON.stringify(friends));
-                    // console.log("search result: " + this.state.searchResult.username)
                     console.log("search result in friends:" + areFriends);
                     if(areFriends){
                         this.setState({

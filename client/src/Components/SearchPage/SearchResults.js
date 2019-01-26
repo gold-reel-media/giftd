@@ -26,8 +26,7 @@ class SearchResults extends Component {
             open: false
         }
         this.handleClick = this.handleClick.bind(this);
-        this.addFriend = this.addFriend.bind(this);
-        this.removeFriend = this.removeFriend.bind(this);
+        this.modifyFriend = this.modifyFriend.bind(this);
     }
 
     handleClick(){
@@ -37,33 +36,33 @@ class SearchResults extends Component {
         })
     }
 
-    addFriend(){
-        console.log("addFriends reached");
+    modifyFriend(){
+        console.log("modifyFriend reached");
         var obj = {
             friend1: this.props.loggedUser,
             friend2: this.props.username
         }
-        $.ajax({
-            type: "POST",
-            url: "/api/addFriends",
-            data: obj,
-        });
-    }
-
-    removeFriend(){
-        console.log("removeFriends reached");
-        var obj = {
-            friend1: this.props.loggedUser,
-            friend2: this.props.username
+        if(!this.props.alreadyFriends){
+            $.ajax({
+                type: "POST",
+                url: "/api/addFriends",
+                data: obj,
+                success: friend => {
+                    console.log(friend);
+                }
+            });
         }
-        $.ajax({
-            type: "POST",
-            url: "/api/removeFriends",
-            data: obj,
-            succes: friend => {
-                console.log(friend);
-            }
-        })
+        else{
+            $.ajax({
+                type: "POST",
+                url: "/api/removeFriends",
+                data: obj,
+                succes: friend => {
+                    console.log(friend);
+                }
+            });
+        }
+        this.handleClick();
     }
 
     render(){
@@ -86,7 +85,7 @@ class SearchResults extends Component {
                 {"Add " + this.props.profilename + " as a Friend?"}
             </DialogTitle>
             <DialogContent>
-                <Button variant="contained" color = "primary" className="classes.button" onClick={this.addFriend}> Add </Button>
+                <Button variant="contained" color = "primary" className="classes.button" onClick={this.modifyFriend}> Add </Button>
             </DialogContent>
             <DialogActions>
 
@@ -117,7 +116,7 @@ class SearchResults extends Component {
                 {"You are already friends with " + this.props.profilename + ". Remove them?"}
             </DialogTitle>
             <DialogContent>
-                <Button variant="contained" color = "primary" className="classes.button" onClick={this.removeFriend}> Remove </Button>
+                <Button variant="contained" color = "primary" className="classes.button" onClick={this.modifyFriend}> Remove </Button>
             </DialogContent>
             <DialogActions>
 
