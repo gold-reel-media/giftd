@@ -5,6 +5,7 @@ import {Route, withRouter} from 'react-router-dom';
 import NavBar from "./NavBar/NavBar";
 import Welcome from "./WelcomePage/Welcome";
 import './App.css';
+import SearchPage from "./Components/SearchPage/SearchPage";
 // import auth0Client from './Auth';
 // import SecuredRoute from ;
 import Callback from './Callback';
