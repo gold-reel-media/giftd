@@ -19,7 +19,7 @@ console.log('are we in production?', process.env.NODE_ENV)
 // Send every other request to the React app
 // Define any API routes before this runs
 if(process.env.NODE_ENV === "production"){
-    app.use(express.status("./client/build"));
+    app.use(express.static("./client/build"));
 } 
 
 const syncOptions = { force: false };
