@@ -122,7 +122,6 @@ class OutlinedTextFields extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <NavBar />
         <div className="add-item-form">
           <Button
             style={{ borderRadius: "100px" }}
