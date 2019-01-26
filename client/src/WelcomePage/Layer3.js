@@ -162,7 +162,7 @@ class Layer3 extends React.Component {
             )}
             {this.state.signedIn && (
                     <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/profile">
-                        <Link to={"/list"}>
+                        <Link to={"/profile"}>
                             <Button> Add List </Button>
                         </Link>
                     </button>

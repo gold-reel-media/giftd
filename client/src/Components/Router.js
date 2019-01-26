@@ -17,7 +17,6 @@ const Router = () => (
       <Route exact path="/" component={App} />
       <Route exact path="/search" component={SearchPage} />
       <Route exact path="/profile" component={UserProfile} />
-      <Route exact path="/list" component={AddListForm} />
       <Route exact path="/list/:wishlistId" component={AddItemForm} />
       <Route exact path="/:username/:wishlistId" component={FriendIndList} />
       <Route exact path="/:username" component={FriendProfilePg} />
