@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import Auth from "../Auth";
 import Auth0Lock from "auth0-lock";
-// auth0Client
-// const auth = new Auth();
+import logo from "../giftd_logo_black.svg";
+import $ from "jquery";
+import "./style.css";
 
 var lock = new Auth0Lock(
   "uPoNkl6EbS0CdIGluuMXmpi67AlmWLt7",
@@ -19,44 +19,48 @@ var lock = new Auth0Lock(
   }
 );
 
-
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = sessionStorage.getItem("accessToken");
     if (accessToken) {
       lock.getUserInfo(accessToken, (err, data) => {
         if (err) return;
-        console.log(data);
+        // console.log(data);
+        // console.log(accessToken)
+
         window.profile = data;
         this.setState({
-          signedIn: true
+          signedIn: true,
+          name: data.name
         });
       });
     }
 
     lock.on("authenticated", authResult => {
-      // Use the token in authResult to getUserInfo() and save it to localStorage
+      // Use the token in authResult to getUserInfo() and save it to sessionStorage
       lock.getUserInfo(authResult.accessToken, (error, profile) => {
         if (error) {
           // Handle error
           return;
         }
-    
-        console.log(authResult);
-        console.log(profile);
+
+        // console.log(authResult);
+        // console.log(profile);
 
         window.profile = profile;
-     
-        localStorage.setItem("accessToken", authResult.accessToken);
-        localStorage.setItem("profile", JSON.stringify(profile));
+
+        sessionStorage.setItem("accessToken", authResult.accessToken);
+        sessionStorage.setItem("profile", JSON.stringify(profile));
 
         this.setState({
-          signedIn: true
+          signedIn: true,
+          name: profile.name
         });
+
+        this.checkDB();
       });
     });
-    
   }
   state = {
     signedIn: false
@@ -65,26 +69,45 @@ class NavBar extends React.Component {
     lock.show();
   };
 
+  checkDB() {
+    console.log("checkdb test");
+    let obj = { username: window.profile.email }
+    console.log("obj in NavBar: " + JSON.stringify(obj));
+    $.get("/api/getUser/" + window.profile.email).then( dbUser => {
+        if (!dbUser) {
+          $.ajax({
+            type: "POST",
+            url: "/api/newUser",
+            data: {
+              username: window.profile.email,
+              profilename: window.profile.name
+            }
+          });
+        }
+    });
+  }
+
   logout = () => {
-    localStorage.removeItem("accessToken");
+    sessionStorage.removeItem("accessToken");
     window.location = "/";
   };
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-primary fixed-top">
+      <nav className="navbar navbar-light bg-light fixed-top">
         <Link className="navbar-brand" to="/">
-          Q&App
+          <img src={logo} className="App-logo" alt="logo" style={{ height: "50px" }} />
         </Link>
+        {this.state.name}
         {!this.state.signedIn && (
-          <button className="btn btn-dark" onClick={this.login}>
+          <button className="btn btn-light" onClick={this.login}>
             Sign In
           </button>
         )}
         {this.state.signedIn && (
           <div>
-            <label className="mr-2 text-white">{}</label>
-            <button className="btn btn-dark" onClick={this.logout}>
+            {/* <label className="mr-2 text-white">{}</label> */}
+            <button className="btn btn-light" onClick={this.logout}>
               Sign Out
             </button>
           </div>

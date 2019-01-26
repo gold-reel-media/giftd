@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import UserProfile from './Components/UserProfile';
 import ListPage from './Components/ListPage/ListPage';
 import {Route, withRouter} from 'react-router-dom';
-import NavBar from "./NavBar/NavBar"
-import Header from "./Header/Header"
-import Main from "./Main/Main"
+import NavBar from "./NavBar/NavBar";
+import Welcome from "./WelcomePage/Welcome";
 import './App.css';
-// import auth0Client from './Auth';
-// import SecuredRoute from ;
+import SearchPage from "./Components/SearchPage/SearchPage";
 import Callback from './Callback';
+import "./index.css"
 
   
 
@@ -36,14 +35,12 @@ class App extends Component {
     }
 
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         <NavBar />
-        <Header />
-        <UserProfile/>
-        <Main />
+        <Welcome history={this.props.history}/>
         <Route exact path='/callback' component={Callback} />
-
       </div>
     );
   }
