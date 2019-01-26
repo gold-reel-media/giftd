@@ -14,12 +14,12 @@ app.use(express.static("public"));
 require("./routes/dbTestRoute.js")(app);
 require("./routes/APIRoutes.js")(app);
 
+console.log('are we in production?', process.env.NODE_ENV)
+
 // Send every other request to the React app
 // Define any API routes before this runs
 if(process.env.NODE_ENV === "production"){
-    app.get("*", (req, res) => {
-        app.use(express.status("./client/build"));
-    });
+    app.use(express.status("./client/build"));
 } 
 
 const syncOptions = { force: false };
