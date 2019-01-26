@@ -16,9 +16,11 @@ require("./routes/APIRoutes.js")(app);
 
 // Send every other request to the React app
 // Define any API routes before this runs
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "./src/index.html"));
-// });
+if(process.env.NODE_ENV === "production"){
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    });
+} 
 
 const syncOptions = { force: false };
 
