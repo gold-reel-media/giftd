@@ -14,7 +14,7 @@ import $ from "jquery";
 import { List, ListItem } from "../Lists/Lists";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-// import "./style.css"
+import "./style.css"
 
 const styles = theme => ({
   container: {
@@ -46,7 +46,8 @@ class OutlinedTextFields extends React.Component {
     price: "",
     itemLink: "",
     imageLink: "",
-    description: ""
+    description: "",
+    formStatus: false
   };
 
   componentDidMount() {
@@ -67,22 +68,49 @@ class OutlinedTextFields extends React.Component {
           imageLink: "",
           description: ""
         });
-        console.log(this.state + "get request");
+        console.log(this.state.items);
       })
       .catch(err => console.log(err));
   };
 
-  handleClickOpen = item => event => {
+  handleClickOpen = (event, item) => {
+    // console.log(item.target.attributes.name.value)
+    console.log( event.target)
+   
     this.setState({ 
       open: true,
-      price: item.price });
+      name: item.name,
+      price: item.price,
+      itemLink: item.itemLink,
+      imageLink: item.imageLink,
+      description: item.description
+    });
 
   };
 
+  handleFormOpen = event => {
+    this.setState({
+      formStatus: true,
+        name: "",
+        price: "",
+        itemLink: "",
+        imageLink: "",
+        description: ""
+    })
+  }
+
   handleClose = event => {
+    this.setState({
+      open: false,
+      
+    })
+  }
+
+  handleFormClose = event => {
     event.preventDefault();
-    this.setState({ open: false });
-    console.log(this.state);
+    this.setState({ formStatus: false,
+     });
+    // console.log(this.state);
     let obj = {
       name: this.state.name,
       imageLink: this.state.imageLink,
@@ -103,8 +131,14 @@ class OutlinedTextFields extends React.Component {
   };
 
   handleChange = name => event => {
+    let url;
+    if(event.target.id === "outlined-name-itemLink") {
+      url = event.target.value.split('?')[0]
+    } else {
+      url = event.target.value
+    }
     this.setState({
-      [name]: event.target.value
+      [name]: url
     });
   };
 
@@ -122,19 +156,19 @@ class OutlinedTextFields extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div className='items-container col-sm-4'>
         <div className="add-item-form">
           <Button
             style={{ borderRadius: "100px" }}
-            onClick={this.handleClickOpen}
+            onClick={this.handleFormOpen}
           >
             <i className="fas fa-plus-circle fa-10x" />
           </Button>
           <Dialog
-            open={this.state.open}
+            open={this.state.formStatus}
             TransitionComponent={Transition}
             keepMounted
-            onClose={this.handleClose}
+            onClose={this.handleFormClose}
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
           >
@@ -174,7 +208,7 @@ class OutlinedTextFields extends React.Component {
                   }}
                 />
                 <TextField
-                  id="outlined-name"
+                  id="outlined-name-itemLink"
                   label="Item Link"
                   fullWidth
                   value={this.state.itemLink}
@@ -207,7 +241,7 @@ class OutlinedTextFields extends React.Component {
               </form>
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleClose} color="primary">
+              <Button onClick={this.handleFormClose} color="primary">
                 Add Item
               </Button>
             </DialogActions>
@@ -220,13 +254,15 @@ class OutlinedTextFields extends React.Component {
                 <ListItem key={item.itemId}>
                   <div className="item-popup">
                     <Button
+                      name={item.name}
                       price={item.price}
+                      itemLink={item.itemLink}
                       variant="outlined"
                       color="primary"
-                      onClick={this.handleClickOpen("price")}
+                      // onClick={this.handleClickOpen}
+                      onClick={event => this.handleClickOpen(event, item)}
                     >
                       <strong>{item.name}</strong>
-                      {item.price}
                     </Button>
                     <Dialog
                       open={this.state.open}
@@ -237,21 +273,22 @@ class OutlinedTextFields extends React.Component {
                       aria-describedby="alert-dialog-slide-description"
                     >
                       <DialogTitle id="alert-dialog-slide-title">
-                        {this.state.price}
+                        {this.state.name}
                       </DialogTitle>
                       <DialogContent>
                         <DialogContentText id="alert-dialog-slide-description">
-                          Let Google help apps determine location. This means
-                          sending anonymous location data to Google, even when
-                          no apps are running.
+                        Price: ${this.state.price}
+                        <br></br>
+                        <a href={this.state.itemLink}>Item Link</a> 
+                        <br></br>
+                        <img src={this.state.imageLink} alt="" width="270" height="200"></img>
+                        <br></br>
+                        Description: {this.state.description}
                         </DialogContentText>
                       </DialogContent>
                       <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
-                          Disagree
-                        </Button>
-                        <Button onClick={this.handleClose} color="primary">
-                          Agree
+                          Close
                         </Button>
                       </DialogActions>
                     </Dialog>
