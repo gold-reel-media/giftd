@@ -2,9 +2,8 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Auth0Lock from "auth0-lock";
 import logo from "../giftd_logo_black.svg";
-// auth0Client
-// const auth = new Auth();
 import $ from "jquery";
+import "./style.css";
 
 var lock = new Auth0Lock(
   "uPoNkl6EbS0CdIGluuMXmpi67AlmWLt7",

@@ -38,7 +38,7 @@ class FriendProfilePg extends Component {
             <List>
               {this.state.lists.map(list => (
                 <ListItem key={list.wishlistId}>
-                  <Link to={profile + "/" + list.wishlistId}>
+                  <Link to={"friendlist/" + list.wishlistId}>
                     <strong>{list.name}</strong>
                   </Link>
                 </ListItem>
