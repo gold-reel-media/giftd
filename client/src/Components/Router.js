@@ -12,16 +12,6 @@ import FriendItem from './FriendProfile/FriendItem';
 
 
 const Router = () => (
-<<<<<<< HEAD
-    <BrowserRouter>
-        <Switch>
-            <Route exact path="/" component={App}/>
-            <Route exact path="/list/:wishlistId" component={AddItemForm} />
-            <Route exact path="/friendlist/:wishlistId" component={FriendIndList} />
-            <Route exact path="/:username" component={FriendProfilePg} />
-        </Switch>
-    </BrowserRouter>
-=======
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={App} />
@@ -32,7 +22,6 @@ const Router = () => (
       <Route exact path="/:username" component={FriendProfilePg} />
     </Switch>
   </BrowserRouter>
->>>>>>> d155c5c6b514599440886025c68d06c6b893a150
 );
 
 export default Router;
