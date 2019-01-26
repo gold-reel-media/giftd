@@ -40,8 +40,8 @@ Object.keys(db).forEach(function(modelName) {
 db.Wishlist.belongsTo(db.User, {foreignKey: 'userId'});
 db.User.hasMany(db.Wishlist, {foreignKey: 'userId'});
 
-db.Item.belongsToMany(db.Wishlist, {through: 'WishItem', foreignKey: 'wishItemId'});
-db.Wishlist.belongsToMany(db.Item, {through: 'WishItem', foreignKey: 'wishItemId'});
+db.Item.belongsTo(db.Wishlist, {foreignKey: 'wishlistId'});
+db.Wishlist.hasMany(db.Item, {foreignKey: 'wishlistId'});
 
 db.User.belongsToMany(db.User, {as: 'friend2', through: 'FriendList', foreignKey: 'friend1Id' , otherKey: 'friend2Id'}); 
 db.User.belongsToMany(db.User, {as: 'friend1', through: 'FriendList', foreignKey: 'friend2Id' , otherKey: 'friend1Id'}); 

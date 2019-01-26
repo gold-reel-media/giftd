@@ -1,49 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { List, ListItem } from "../Lists/Lists";
+import { Link } from "react-router-dom";
+import $ from "jquery";
 import './style.css';
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  dense: {
-    marginTop: 16,
-  },
-  menu: {
-    width: 200,
-  },
-});
+
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
-class AlertDialogSlide extends React.Component {
+class AlertDialogSlide extends Component {
   state = {
     open: false,
+    lists: [],
     listName: ""
   };
 
+  componentDidMount() {
+    this.loadLists();
+    console.log('mounted')
+  };
 
-  handleChange = listName => event => {
+  loadLists = () => {
+    let profile = JSON.parse(sessionStorage.getItem("profile"));
+    console.log('loading')
+    $.get("/api/getWishlists/" + profile.email).then( res => {
+      console.log(res);
+      this.setState({ lists: res, listName: ""});
+      console.log(this.state);
+    })
+    .catch(err => console.log(err));
+  };
+
+
+  handleChange = name => event => {
     this.setState({
-      [listName]: event.target.value,
-    });    
+      [name]: event.target.value,
+    });
   };
 
 
@@ -51,26 +52,40 @@ class AlertDialogSlide extends React.Component {
     this.setState({ open: true });
   };
 
-   //clear form
+  //  clear form
    resetForm = () => {
     this.setState({
       listName: " "
     })
   }  
 
-  handleClose = () => {
+  handleClose = (event) => {
+    event.preventDefault();
     this.setState({ open: false });
-    //grab input
-    this.props.addList(this.state.listName)
-    this.resetForm();
+    console.log(this.state)
+    let profile = JSON.parse(sessionStorage.getItem("profile"));
+    let obj = {
+      name: this.state.listName,
+      username: profile.email
+    }
+    if (this.state.listName) {
+      $.ajax({
+        type: "POST",
+        url: "/api/newWishlist",
+        data: obj
+      })
+      .then(this.loadLists)
+      .catch(err => console.log(err));
+    }
+
   };
     
-    
-
+  
   render() {
     const { classes } = this.props;
     return (
       <div>
+      <div className='add-list-form'>
         <Button style={{borderRadius:"100px"}} onClick={this.handleClickOpen}>
         <i className="fas fa-plus-circle fa-10x"></i>
         </Button>
@@ -93,7 +108,7 @@ class AlertDialogSlide extends React.Component {
                 
                 value={this.state.listName}
                 onChange={this.handleChange('listName')}
-                
+                style={{width: '545px'}}
                 margin="normal"
                 variant="outlined"
               />
@@ -106,6 +121,25 @@ class AlertDialogSlide extends React.Component {
             
           </DialogActions>
         </Dialog>
+      </div>
+      <div className="lists">
+      {this.state.lists.length ? (
+        <List>
+         {this.state.lists.map(list => (
+           <ListItem key={list.wishlistId}>
+            <Link to={'/list/' + list.wishlistId}>
+              <strong>
+                {list.name}
+              </strong>
+            </Link>
+           </ListItem>
+         ))}
+        </List>
+      ) : (
+        <h3>No Lists to Display</h3>
+      )}
+        
+      </div>
       </div>
     );
   }
