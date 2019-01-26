@@ -80,6 +80,11 @@ module.exports = function (app) {
                 });
         });
     });
+    
+    app.delete("/api/removeItem/:id", (req, res) => {
+        db.Item.destroy({ where: { itemId: req.params.id } }).then(res.sendStatus(200))
+    });
+    
 
     //add two users as friends, passing two usernames
     app.post("/api/addFriends", (req, res) => {

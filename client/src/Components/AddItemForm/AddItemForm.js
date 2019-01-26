@@ -17,7 +17,6 @@ import { withStyles } from "@material-ui/core/styles";
 import "./style.css"
 import NavBar from "../../NavBar/NavBar";
 
-// import "./style.css"
 
 const styles = theme => ({
   container: {
@@ -145,16 +144,14 @@ class OutlinedTextFields extends React.Component {
     });
   };
 
-  //clear form
-  //  resetForm = () => {
-  //   this.setState({
-  //       name: '',
-  //       price: '',
-  //       itemLink: '',
-  //       imageLink: '',
-  //       description: ''
-  //   })
-  // }
+  deleteItem = id => {
+    this.handleClose()
+    $.ajax({
+      type: "DELETE",
+      url: "/api/removeItem/" + id
+    })
+    .then(this.loadItems)
+  }
 
   render() {
     const { classes } = this.props;
@@ -290,6 +287,9 @@ class OutlinedTextFields extends React.Component {
                         </DialogContentText>
                       </DialogContent>
                       <DialogActions>
+                        <Button onClick={() => this.deleteItem(item.itemId)} color="primary">
+                          Delete Item
+                        </Button>
                         <Button onClick={this.handleClose} color="primary">
                           Close
                         </Button>
