@@ -54,8 +54,8 @@ module.exports = function (app) {
     //create a wishlist and associate it to user
     //passing it wishlist object containing new info and user object of user it will belong to
     app.post("/api/newWishlist", (req, res) => {
-        db.Wishlist.create({  name: req.body.wishlist.name }).then(wishlist => {
-            db.User.find({where: {username: req.body.user.username }}).then(user => {
+        db.Wishlist.create({  name: req.body.name }).then(wishlist => {
+            db.User.find({where: {username: req.body.username }}).then(user => {
                 user.addWishlists([wishlist]);
                 res.status(200).json(wishlist);
             });
