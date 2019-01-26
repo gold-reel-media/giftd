@@ -1,6 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Auth0Lock from "auth0-lock";
+import logo from "../giftd_logo_black.svg";
+// auth0Client
+// const auth = new Auth();
 import $ from "jquery";
 
 var lock = new Auth0Lock(
@@ -92,18 +95,20 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-primary fixed-top">
-        <Link className="navbar-brand" to="/" />
+      <nav className="navbar navbar-light bg-light fixed-top">
+        <Link className="navbar-brand" to="/">
+          <img src={logo} className="App-logo" alt="logo" style={{ height: "50px" }} />
+        </Link>
         {this.state.name}
         {!this.state.signedIn && (
-          <button className="btn btn-dark" onClick={this.login}>
+          <button className="btn btn-light" onClick={this.login}>
             Sign In
           </button>
         )}
         {this.state.signedIn && (
           <div>
             {/* <label className="mr-2 text-white">{}</label> */}
-            <button className="btn btn-dark" onClick={this.logout}>
+            <button className="btn btn-light" onClick={this.logout}>
               Sign Out
             </button>
           </div>
