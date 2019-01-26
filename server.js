@@ -18,7 +18,7 @@ require("./routes/APIRoutes.js")(app);
 // Define any API routes before this runs
 if(process.env.NODE_ENV === "production"){
     app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "./client/build/index.html"));
+        app.use(express.status("./client/build"));
     });
 } 
 
