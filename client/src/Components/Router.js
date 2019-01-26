@@ -7,7 +7,7 @@ import UserProfile from './UserProfile';
 import AddItemForm from './AddItemForm/AddItemForm';
 import FriendProfilePg from './FriendProfile/FriendProfilePg';
 import FriendIndList from './FriendProfile/FriendIndList';
-
+import FriendItem from './FriendProfile/FriendItem';
 
 
 

@@ -1,27 +1,53 @@
 import React, { Component } from "react"
 import { light } from '@material-ui/core/styles/createPalette';
-// import './style.css';
-import Items from "../Items/Items";
+import $ from "jquery";
+import {List, ListItem} from "../Lists/Lists";
+
 
 class IndList extends Component {
     state = {
-        items: {}
+        items: []
     };
+
+    componentDidMount() {
+        this.loadListItems();
+        console.log("friend profile items");
+      }
+    
+      loadListItems = () => {
+        let listID = this.props.match.params.wishlistId;
+        console.log("list id " + listID)
+        $.get("/api/getItems/" + listID )
+          .then(res => {
+              console.log(res)
+            this.setState({ items: res});
+          })
+          .catch(err => console.log(err));
+          console.log(this.state)
+      };
+    
+
 
     render() {
 
         return(
             <div>
-                <h1>My Birthday</h1>
-                <p>give me all the things I want</p>
-                <ul className="lists">
-                    {Object.keys(this.state.items).map( key => 
-                    
-                    <Items key={key} details={this.state.items}/>
-                  
-                  )}
-                </ul>
-            </div>
+                <h1>Wist List Name</h1>
+                <p>look at what I want and buy it for</p>
+                <div className="items">
+          {this.state.items.length ? (
+            <List>
+              {this.state.items.map(item => (
+                <ListItem key={item.itemId}>
+                {item.name}
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+            <h3>No Items to Display</h3>
+          )}
+        </div>
+      </div>
         )
     }
 }

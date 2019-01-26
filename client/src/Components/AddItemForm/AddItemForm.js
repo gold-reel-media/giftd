@@ -15,6 +15,9 @@ import { List, ListItem } from "../Lists/Lists";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import "./style.css"
+import NavBar from "../../NavBar/NavBar";
+
+// import "./style.css"
 
 const styles = theme => ({
   container: {
