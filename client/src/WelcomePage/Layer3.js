@@ -135,7 +135,7 @@ class Layer3 extends React.Component {
             {this.state.signedIn && (
                     <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/search">
                         {/* This needs to be changed to user search page once we have it */}
-                        <Link to={"/list"}>
+                        <Link to={"/search"}>
                             <Button> Find User </Button>
                         </Link>
                     </button>
