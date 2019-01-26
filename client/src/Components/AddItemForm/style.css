@@ -1,0 +1,33 @@
+#alert-dialog-slide-description {
+    text-align: center;
+}
+
+#alert-dialog-slide-description a {
+    color: red;
+}
+
+#alert-dialog-slide-description a:hover {
+    text-decoration: none;
+    color: purple
+}
+
+p#alert-dialog-slide-description {
+    line-height: 1.75;
+}
+
+.MuiButton-outlinedPrimary-10 {
+    color: #0d9aaa!important;
+    border: 1px solid #0d9aaa!important
+}
+
+.MuiButton-outlinedPrimary-10:hover {
+    background-color: #0d9aaa!important;
+    color: white!important;
+}
+
+.items-container {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
