@@ -14,6 +14,8 @@ import $ from "jquery";
 import { List, ListItem } from "../Lists/Lists";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+import NavBar from "../../NavBar/NavBar";
+
 // import "./style.css"
 
 const styles = theme => ({
@@ -120,6 +122,7 @@ class OutlinedTextFields extends React.Component {
     const { classes } = this.props;
     return (
       <div>
+        <NavBar />
         <div className="add-item-form">
           <Button
             style={{ borderRadius: "100px" }}
