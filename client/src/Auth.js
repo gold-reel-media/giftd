@@ -28,7 +28,9 @@ class Auth {
   isAuthenticated() {
     return new Date().getTime() < this.expiresAt;
   }
-
+state = {
+    signedIn: false
+  };
   login() {
     this.auth0.authorize();
   }
