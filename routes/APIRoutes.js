@@ -85,6 +85,9 @@ module.exports = function (app) {
         db.Item.destroy({ where: { itemId: req.params.id } }).then(res.sendStatus(200))
     });
     
+    app.delete("/api/removeWishlist/:id", (req, res) => {
+        db.Wishlist.destroy({ where: { wishlistId: req.params.id } }).then(res.sendStatus(200))
+    });
 
     //add two users as friends, passing two usernames
     app.post("/api/addFriends", (req, res) => {
