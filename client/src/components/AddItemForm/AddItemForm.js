@@ -72,8 +72,11 @@ class OutlinedTextFields extends React.Component {
       .catch(err => console.log(err));
   };
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
+  handleClickOpen = item => event => {
+    this.setState({ 
+      open: true,
+      price: item.price });
+
   };
 
   handleClose = event => {
@@ -217,11 +220,13 @@ class OutlinedTextFields extends React.Component {
                 <ListItem key={item.itemId}>
                   <div className="item-popup">
                     <Button
+                      price={item.price}
                       variant="outlined"
                       color="primary"
-                      onClick={this.handleClickOpen}
+                      onClick={this.handleClickOpen("price")}
                     >
                       <strong>{item.name}</strong>
+                      {item.price}
                     </Button>
                     <Dialog
                       open={this.state.open}
@@ -232,7 +237,7 @@ class OutlinedTextFields extends React.Component {
                       aria-describedby="alert-dialog-slide-description"
                     >
                       <DialogTitle id="alert-dialog-slide-title">
-                        {"Use Google's location service?"}
+                        {this.state.price}
                       </DialogTitle>
                       <DialogContent>
                         <DialogContentText id="alert-dialog-slide-description">
