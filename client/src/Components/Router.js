@@ -5,7 +5,7 @@ import ListPage from './ListPage/ListPage';
 import AddItemForm from './AddItemForm/AddItemForm';
 import FriendProfilePg from './FriendProfile/FriendProfilePg';
 import FriendIndList from './FriendProfile/FriendIndList';
-
+import FriendItem from './FriendProfile/FriendItem';
 
 
 
@@ -14,7 +14,7 @@ const Router = () => (
         <Switch>
             <Route exact path="/" component={App}/>
             <Route exact path="/list/:wishlistId" component={AddItemForm} />
-            <Route exact path="/:username/:wishlistId" component={FriendIndList} />
+            <Route exact path="/friendlist/:wishlistId" component={FriendIndList} />
             <Route exact path="/:username" component={FriendProfilePg} />
         </Switch>
     </BrowserRouter>
