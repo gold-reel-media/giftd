@@ -74,7 +74,7 @@ class AlertDialogSlide extends Component {
         url: "/api/newWishlist",
         data: obj
       })
-      .then(this.loadLists)
+      // .then(this.loadLists)
       .catch(err => console.log(err));
     }
 

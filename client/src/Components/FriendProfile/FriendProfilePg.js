@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import NavBar from "../../NavBar/NavBar"
 
 
-class UserProfile extends Component {
+class FriendProfilePg extends Component {
   state = {
     lists: {}
   };
@@ -53,4 +53,4 @@ class UserProfile extends Component {
   }
 }
 
-export default UserProfile;
+export default FriendProfilePg;
