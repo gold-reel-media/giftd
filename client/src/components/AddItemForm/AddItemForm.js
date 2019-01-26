@@ -11,10 +11,11 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import $ from "jquery";
-import NavBar from "../../NavBar/NavBar";
 import { List, ListItem } from "../Lists/Lists";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+import NavBar from "../../NavBar/NavBar";
+
 // import "./style.css"
 
 const styles = theme => ({
@@ -253,6 +254,7 @@ class OutlinedTextFields extends React.Component {
                       </DialogActions>
                     </Dialog>
                   </div>
+                  
                 </ListItem>
               ))}
             </List>
@@ -270,3 +272,45 @@ OutlinedTextFields.propTypes = {
 };
 
 export default OutlinedTextFields;
+
+// import React from 'react';
+// import './style.css';
+
+// class AddItemForm extends React.Component {
+//     // constructor(props) {
+//     //     super(props);
+//         nameRef = React.createRef();
+//         priceRef = React.createRef();
+//         linkRef = React.createRef();
+//         descRef = React.createRef();
+//         imageRef = React.createRef();
+//     // }
+
+//     createItem = (event) => {
+//         event.preventDefault();
+//         const item = {
+//             name: this.nameRef.current.value,
+//             price: this.priceRef.current.value,
+//             link: this.linkRef.current.value,
+//             desc: this.descRef.current.value,
+//             image: this.imageRef.current.value
+//         };
+//         console.log(item);
+//     };
+//     render() {
+//         return (
+//             <div className="form-container">
+//             <form className="add-item" onSubmit={this.createItem}>
+//                 <input name ="name" ref={this.nameRef} type="text" placeholder="name" />
+//                 <input name ="price" ref={this.priceRef} type="text" placeholder="price" />
+//                 <input name ="link" ref={this.linkRef} type="text" placeholder="link" />
+//                 <textarea name ="desc" ref={this.descRef} placeholder="desc"></textarea>
+//                 <input name ="image" ref={this.imageRef} type="text" placeholder="image" />
+//                 <button type="submit" onClick={this.createItem}>+Item</button>
+//             </form>
+//             </div>
+//         );
+//     }
+// }
+
+// export default AddItemForm;
