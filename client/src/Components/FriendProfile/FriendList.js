@@ -14,7 +14,8 @@ class FriendList extends Component {
 
   //   // call to database to find friends in database
   getFriends = () => {
-    let username = "m.a.gallagher09@gmail.com";
+    let username = JSON.parse(sessionStorage.getItem("profile")).email;
+    console.log("username: " + username);
     $.get("/api/getFriends/" + username).then(res => {
       let frnd = res;
       this.setState({ 

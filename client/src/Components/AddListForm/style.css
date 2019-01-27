@@ -14,3 +14,18 @@ button:focus {
 .MuiInputBase-input-165 {
     border-top-color: purple !important;
 }
+
+.list-form-and-container{
+    top: 100px;
+    position: relative;
+    min-height: 300px;
+    min-width: 470px;
+}
+
+.add-wishlist-btn{
+    min-width: 140px;
+    min-height: 145px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}

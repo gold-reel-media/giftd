@@ -1,7 +1,10 @@
 .friend-list{
     border: 2px dotted grey;
-    width: 35%;
+    width: 90%;
     margin: 2%;
+    top: 45%;
+    min-height: 20%;
+    position: relative;
 }
 
 .friend{
