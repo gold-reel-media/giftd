@@ -80,6 +80,14 @@ class AlertDialogSlide extends Component {
     }
 
   };
+
+  deleteList = id => {
+    $.ajax({
+      type: "DELETE",
+      url: "/api/removeWishlist/" + id
+    })
+    .then(this.loadLists)
+  }
     
   
   render() {
@@ -133,6 +141,9 @@ class AlertDialogSlide extends Component {
                 {list.name}
               </strong>
             </Link>
+            <Button onClick={() => this.deleteList(list.wishlistId)} color="primary">
+              Delete List
+            </Button>
            </ListItem>
          ))}
         </List>

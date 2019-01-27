@@ -25,13 +25,16 @@
   }
   
   .list-overflow-container li:first-child {
-    border-top: none;
+    border-top: none!important;
   }
   
   .list-overflow-container li:last-child {
-    border-bottom: none;
+    border-bottom: none!important;
   }
   
+  .list-group-item {
+    border-top: 1px solid #0d9aaa57!important;
+  }
 
 
 
