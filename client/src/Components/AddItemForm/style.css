@@ -31,3 +31,12 @@ p#alert-dialog-slide-description {
     margin-right: auto;
     text-align: center;
 }
+
+body {
+    background-image: url(./wave-bg.png);
+}
+
+.list-overflow-container {
+    box-shadow: 2px 5px 18px 5px #888888;
+    margin-top: 40px;
+}
