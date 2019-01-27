@@ -82,6 +82,14 @@ class AlertDialogSlide extends Component {
 
   };
 
+  deleteList = id => {
+    $.ajax({
+      type: "DELETE",
+      url: "/api/removeWishlist/" + id
+    })
+      .then(this.loadLists)
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -128,11 +136,6 @@ class AlertDialogSlide extends Component {
                   </DialogActions>
                 </Dialog>
               </div>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-6">
               <div className="lists">
                 {this.state.lists.length ? (
                   <List>
@@ -143,6 +146,9 @@ class AlertDialogSlide extends Component {
                             {list.name}
                           </strong>
                         </Link>
+                        <Button onClick={() => this.deleteList(list.wishlistId)} color="primary">
+                          Delete List
+            </Button>
                       </ListItem>
                     ))}
                   </List>
@@ -152,12 +158,8 @@ class AlertDialogSlide extends Component {
 
               </div>
             </div>
-            <div className="col-6">
-              <FriendList />
-            </div>
           </div>
         </div>
-
       </div>
     );
   }

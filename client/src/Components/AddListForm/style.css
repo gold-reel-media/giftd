@@ -29,3 +29,18 @@ button:focus {
     margin-left: auto;
     margin-right: auto;
 }
+
+.MuiButton-textPrimary-4 {
+    color: #0d9aaa!important;
+    border: 1px solid #0d9aaa!important;
+    
+}
+
+.MuiButton-textPrimary-4:hover {
+    background-color: #0d9aaa!important;
+    color: white!important;
+}
+
+.MuiButtonBase-root-27.MuiButton-root-1.MuiButton-text-3.MuiButton-textPrimary-4.MuiButton-flat-6.MuiButton-flatPrimary-7 {
+    margin-left: 10px;
+}
