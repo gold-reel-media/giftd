@@ -1,14 +1,22 @@
-.friend-list{
+.friend-list {
     border: 2px dotted grey;
     width: 35%;
     margin: 2%;
 }
 
-.friend{
+.friend {
     color: purple;
     font-size: 22px;
 }
 
-.username{
+.username {
     color: blue;
 }
+
+.purchased {
+    font-size: 15px;
+    background-color: rgba(0, 255, 255, .5);
+    color: purple;
+    /* -webkit-transform: rotate(-10deg) scale(1.5) translateX(50%) translateY(-50%); */
+    transform: rotate(-15deg) translateY(-120%);
+} 

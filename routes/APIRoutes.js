@@ -106,10 +106,11 @@ module.exports = function (app) {
     //update an item to be reserved by a user, passing it item object and user object of user reserving it
     app.post("/api/changeItemStatus", (req, res) => {
         db.Item.find({where: {itemid: req.body.itemid}}).then(item => {
-            var newStatus = !item.status;       //get item's current status and changes it to newStatus (opposite of current status)
-            var user = null;
-            if(newStatus){user = req.body.username}  //if item's new status is true (as in it's now reserved) user field in item is updated to userid of user who reserved it
-            item.update({status: newStatus, user: user}).then(res.sendStatus(200)); //otherwise, user is null because it not reserved by anyone
+            var newStatus = !item.status     //get item's current status and changes it to newStatus (opposite of current status)
+            
+            // var user = null;
+            // if(newStatus){user = req.body.username}  //if item's new status is true (as in it's now reserved) user field in item is updated to userid of user who reserved it
+            item.update({status: newStatus}).then(res.sendStatus(200)); //otherwise, user is null because it not reserved by anyone
         })
     })
 };
