@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { light } from "@material-ui/core/styles/createPalette";
 import $ from "jquery";
+import NavBar from '../../NavBar/NavBar';
 import { List, ListItem } from "../Lists/Lists";
 import "./style.css"
 
@@ -50,8 +51,9 @@ class IndList extends Component {
   render() {
     return (
       <div>
-        <h1>Wist List Name</h1>
-        <p>look at what I want and buy it for</p>
+      <NavBar />
+      <div className="pageHead">
+        <h1>Wish List Name</h1>
         <div className="items">
           {this.state.items.length ? (
             <List>
@@ -59,8 +61,8 @@ class IndList extends Component {
                 <ListItem 
                   key={item.itemId}
                 >
-                  {!this.state.itemPurchased && <button onClick={event => this.updateItem(event, item)}> buy me! </button> }
-                  {this.state.itemPurchased && <button onClick={event => this.updateItem(event, item)}> purchased </button> }
+                  {!this.state.itemPurchased && <button type="button" id="purchase-btn" class="btn btn-outline-info btn-sm" onClick={event => this.updateItem(event, item)}> buy me! </button> }
+                  {this.state.itemPurchased && <button type="button" id="purchase-btn" class="btn btn-outline-info btn-sm" onClick={event => this.updateItem(event, item)}> purchased </button> }
                   {item.name}
                 </ListItem>
               ))}
@@ -69,6 +71,7 @@ class IndList extends Component {
             <h3>No Items to Display</h3>
           )}
         </div>
+      </div>
       </div>
     );
   }
