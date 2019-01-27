@@ -12,11 +12,8 @@ import PropTypes from "prop-types";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import $ from "jquery";
 import { List, ListItem } from "../Lists/Lists";
-import { Link } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
-import "./style.css"
-import NavBar from "../../NavBar/NavBar";
-
+import "./AddItemForm.css";
+import SignedInNavbar from "../SignedInNavbar/SignedInNavbar";
 
 const styles = theme => ({
   container: {
@@ -55,6 +52,7 @@ class OutlinedTextFields extends React.Component {
   componentDidMount() {
     this.loadItems();
     console.log("mounted");
+    
   }
 
   loadItems = () => {
@@ -71,15 +69,16 @@ class OutlinedTextFields extends React.Component {
           description: ""
         });
         console.log(this.state.items);
+        
       })
       .catch(err => console.log(err));
   };
 
   handleClickOpen = (event, item) => {
     // console.log(item.target.attributes.name.value)
-    console.log( event.target)
-   
-    this.setState({ 
+    console.log(event.target);
+
+    this.setState({
       open: true,
       name: item.name,
       price: item.price,
@@ -87,31 +86,29 @@ class OutlinedTextFields extends React.Component {
       imageLink: item.imageLink,
       description: item.description
     });
-
   };
 
   handleFormOpen = event => {
     this.setState({
       formStatus: true,
-        name: "",
-        price: "",
-        itemLink: "",
-        imageLink: "",
-        description: ""
-    })
-  }
+      name: "",
+      price: "",
+      itemLink: "",
+      imageLink: "",
+      description: ""
+    });
+    
+  };
 
   handleClose = event => {
     this.setState({
-      open: false,
-      
-    })
-  }
+      open: false
+    });
+  };
 
   handleFormClose = event => {
     event.preventDefault();
-    this.setState({ formStatus: false,
-     });
+    this.setState({ formStatus: false });
     // console.log(this.state);
     let obj = {
       name: this.state.name,
@@ -134,10 +131,10 @@ class OutlinedTextFields extends React.Component {
 
   handleChange = name => event => {
     let url;
-    if(event.target.id === "outlined-name-itemLink") {
-      url = event.target.value.split('?')[0]
+    if (event.target.id === "outlined-name-itemLink") {
+      url = event.target.value.split("?")[0];
     } else {
-      url = event.target.value
+      url = event.target.value;
     }
     this.setState({
       [name]: url
@@ -145,164 +142,180 @@ class OutlinedTextFields extends React.Component {
   };
 
   deleteItem = id => {
-    this.handleClose()
+    this.handleClose();
     $.ajax({
       type: "DELETE",
       url: "/api/removeItem/" + id
-    })
-    .then(this.loadItems)
-  }
+    }).then(this.loadItems);
+  };
+
+  logout = () => {
+    sessionStorage.removeItem("accessToken");
+    window.location = "/";
+  };
 
   render() {
-    const { classes } = this.props;
     return (
-      <div className='items-container col-sm-4'>
-        <div className="add-item-form">
-          <Button
-            style={{ borderRadius: "100px" }}
-            onClick={this.handleFormOpen}
-          >
-            <i className="fas fa-plus-circle fa-10x" />
-          </Button>
-          <Dialog
-            open={this.state.formStatus}
-            TransitionComponent={Transition}
-            keepMounted
-            onClose={this.handleFormClose}
-            aria-labelledby="alert-dialog-slide-title"
-            aria-describedby="alert-dialog-slide-description"
-          >
-            <DialogTitle id="alert-dialog-slide-title">
-              {"New Item"}
-            </DialogTitle>
-            <DialogContent>
-              <form noValidate autoComplete="off">
-                <TextField
-                  id="outlined-name"
-                  label="Name"
-                  value={this.state.name}
-                  onChange={this.handleChange("name")}
-                  margin="normal"
-                  variant="outlined"
-                  style={{
-                    width: "48%",
-                    marginRight: "15PX",
-                    border: "purple"
-                  }}
-                />
-                <TextField
-                  id="outlined-adornment-amount"
-                  style={{ width: "48%", marginTop: "16px" }}
-                  className={classNames(
-                    styles.backgroundColor,
-                    styles.textField
-                  )}
-                  variant="outlined"
-                  label="Price"
-                  value={this.state.price}
-                  onChange={this.handleChange("price")}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">$</InputAdornment>
-                    )
-                  }}
-                />
-                <TextField
-                  id="outlined-name-itemLink"
-                  label="Item Link"
-                  fullWidth
-                  value={this.state.itemLink}
-                  onChange={this.handleChange("itemLink")}
-                  margin="normal"
-                  variant="outlined"
-                />
-                <TextField
-                  id="outlined-name"
-                  label="Image Link"
-                  fullWidth
-                  value={this.state.imageLink}
-                  onChange={this.handleChange("imageLink")}
-                  margin="normal"
-                  variant="outlined"
-                />
-                <TextField
-                  id="outlined-multiline-flexible"
-                  label="Description"
-                  multiline
-                  rowsMax="4"
-                  // defaultValue="Default Value"
-                  // className={classes.textField}
-                  value={this.state.description}
-                  onChange={this.handleChange("description")}
-                  margin="normal"
-                  variant="outlined"
-                  style={{ width: "100%" }}
-                />
-              </form>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleFormClose} color="primary">
-                Add Item
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </div>
-        <div className="items">
-          {this.state.items.length ? (
-            <List>
-              {this.state.items.map(item => (
-                <ListItem key={item.itemId}>
-                  <div className="item-popup">
-                    <Button
-                      name={item.name}
-                      price={item.price}
-                      itemLink={item.itemLink}
-                      variant="outlined"
-                      color="primary"
-                      // onClick={this.handleClickOpen}
-                      onClick={event => this.handleClickOpen(event, item)}
-                    >
-                      <strong>{item.name}</strong>
-                    </Button>
-                    <Dialog
-                      open={this.state.open}
-                      TransitionComponent={Transition}
-                      keepMounted
-                      onClose={this.handleClose}
-                      aria-labelledby="alert-dialog-slide-title"
-                      aria-describedby="alert-dialog-slide-description"
-                    >
-                      <DialogTitle id="alert-dialog-slide-title">
-                        {this.state.name}
-                      </DialogTitle>
-                      <DialogContent>
-                        <DialogContentText id="alert-dialog-slide-description">
-                        Price: ${this.state.price}
-                        <br></br>
-                        <a href={this.state.itemLink}>Item Link</a> 
-                        <br></br>
-                        <img src={this.state.imageLink} alt="" width="270" height="200"></img>
-                        <br></br>
-                        Description: {this.state.description}
-                        </DialogContentText>
-                      </DialogContent>
-                      <DialogActions>
-                        <Button onClick={() => this.deleteItem(item.itemId)} color="primary">
-                          Delete Item
-                        </Button>
-                        <Button onClick={this.handleClose} color="primary">
-                          Close
-                        </Button>
-                      </DialogActions>
-                    </Dialog>
-                  </div>
-                  
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <h3>No Items to Display</h3>
-          )}
+      <div>
+        <SignedInNavbar />
+        
+        <div className="items-container col-sm-4">
+        <div className="add-item">Add Item</div>
+          <div className="add-item-form">
+            <Button
+              style={{ borderRadius: "100px" }}
+              onClick={this.handleFormOpen}
+            >
+              <i className="fas fa-plus-circle fa-10x" />
+            </Button>
+            <Dialog
+              open={this.state.formStatus}
+              TransitionComponent={Transition}
+              keepMounted
+              onClose={this.handleFormClose}
+              aria-labelledby="alert-dialog-slide-title"
+              aria-describedby="alert-dialog-slide-description"
+            >
+              <DialogTitle id="alert-dialog-slide-title">
+                {"New Item"}
+              </DialogTitle>
+              <DialogContent>
+                <form noValidate autoComplete="off">
+                  <TextField
+                    id="outlined-name"
+                    label="Name"
+                    value={this.state.name}
+                    onChange={this.handleChange("name")}
+                    margin="normal"
+                    variant="outlined"
+                    style={{
+                      width: "48%",
+                      marginRight: "15PX",
+                      border: "purple"
+                    }}
+                  />
+                  <TextField
+                    id="outlined-adornment-amount"
+                    style={{ width: "48%", marginTop: "16px" }}
+                    className={classNames(
+                      styles.backgroundColor,
+                      styles.textField
+                    )}
+                    variant="outlined"
+                    label="Price"
+                    value={this.state.price}
+                    onChange={this.handleChange("price")}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">$</InputAdornment>
+                      )
+                    }}
+                  />
+                  <TextField
+                    id="outlined-name-itemLink"
+                    label="Item Link"
+                    fullWidth
+                    value={this.state.itemLink}
+                    onChange={this.handleChange("itemLink")}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                  <TextField
+                    id="outlined-name"
+                    label="Image Link"
+                    fullWidth
+                    value={this.state.imageLink}
+                    onChange={this.handleChange("imageLink")}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                  <TextField
+                    id="outlined-multiline-flexible"
+                    label="Description"
+                    multiline
+                    rowsMax="4"
+                    // defaultValue="Default Value"
+                    // className={classes.textField}
+                    value={this.state.description}
+                    onChange={this.handleChange("description")}
+                    margin="normal"
+                    variant="outlined"
+                    style={{ width: "100%" }}
+                  />
+                </form>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.handleFormClose} color="primary">
+                  Add Item
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </div>
+          <div className="items">
+            {this.state.items.length ? (
+              <List>
+                {this.state.items.map(item => (
+                  <ListItem key={item.itemId}>
+                    <div className="item-popup">
+                      <Button
+                        name={item.name}
+                        price={item.price}
+                        itemLink={item.itemLink}
+                        variant="outlined"
+                        color="primary"
+                        // onClick={this.handleClickOpen}
+                        onClick={event => this.handleClickOpen(event, item)}
+                      >
+                        <strong>{item.name}</strong>
+                      </Button>
+                      <Dialog
+                        open={this.state.open}
+                        TransitionComponent={Transition}
+                        keepMounted
+                        onClose={this.handleClose}
+                        aria-labelledby="alert-dialog-slide-title"
+                        aria-describedby="alert-dialog-slide-description"
+                      >
+                        <DialogTitle id="alert-dialog-slide-title">
+                          {this.state.name}
+                        </DialogTitle>
+                        <DialogContent>
+                          <DialogContentText id="alert-dialog-slide-description">
+                            Price: ${this.state.price}
+                            <br />
+                            <a href={this.state.itemLink}>Item Link</a>
+                            <br />
+                            <img
+                              src={this.state.imageLink}
+                              alt=""
+                              width="270"
+                              height="200"
+                            />
+                            <br/>
+                            <br />
+                            Description: {this.state.description}
+                          </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button
+                            onClick={() => this.deleteItem(item.itemId)}
+                            color="primary"
+                          >
+                            Delete Item
+                          </Button>
+                          <Button onClick={this.handleClose} color="primary">
+                            Close
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
+                    </div>
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Items to Display</h3>
+            )}
+          </div>
         </div>
       </div>
     );
