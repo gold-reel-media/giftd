@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { light } from "@material-ui/core/styles/createPalette";
 import $ from "jquery";
-import NavBar from '../../NavBar/NavBar';
+import NavBar from "../../NavBar/NavBar";
 import { List, ListItem } from "../Lists/Lists";
-import "./style.css"
+import "./style.css";
 
 class IndList extends Component {
   state = {
-    items: [],
-    itemPurchased: false
+    items: []
   };
 
   componentDidMount() {
@@ -23,17 +22,19 @@ class IndList extends Component {
     $.get("/api/getItems/" + listID)
       .then(res => {
         console.log(res);
-        this.setState({ items: res });
+        this.setState({
+          items: res
+          // itemPurchased: item.status
+        });
       })
       .catch(err => console.log(err));
-    console.log(this.state);
   };
 
   // post request that takes in item id and updates purchase status of item
   updateItem = (event, item) => {
     let itemStatus = {
       itemid: item.itemId
-    }
+    };
     $.ajax({
       type: "POST",
       url: "/api/changeItemStatus",
@@ -41,37 +42,57 @@ class IndList extends Component {
       success: status => {
         console.log(status);
       }
-    }).then( () => {
-        var tempStatus = !item.status;
-        this.setState({itemPurchased: tempStatus});
-        this.loadListItems();
-    })
+    }).then(() =>
+      this.setState({
+        items: this.state.items.map(thing => {
+          if (thing.itemId === item.itemId) {
+            thing.status = !thing.status;
+          }
+          console.log("thing " + JSON.stringify(thing))
+          return thing;
+        })
+      })
+    );
   };
 
   render() {
     return (
       <div>
-      <NavBar />
-      <div className="pageHead">
-        <h1>Wish List Name</h1>
-        <div className="items">
-          {this.state.items.length ? (
-            <List>
-              {this.state.items.map(item => (
-                <ListItem 
-                  key={item.itemId}
-                >
-                  {!this.state.itemPurchased && <button type="button" id="purchase-btn" class="btn btn-outline-info btn-sm" onClick={event => this.updateItem(event, item)}> buy me! </button> }
-                  {this.state.itemPurchased && <button type="button" id="purchase-btn" class="btn btn-outline-info btn-sm" onClick={event => this.updateItem(event, item)}> purchased </button> }
-                  {item.name}
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <h3>No Items to Display</h3>
-          )}
+        <NavBar />
+        <div className="pageHead">
+          <h1>Wish List Name</h1>
+          <div className="items">
+            {this.state.items.length ? (
+              <List>
+                {this.state.items.map(item => (
+                  <ListItem key={item.itemId}>
+                      {item.status && (
+                        <button
+                          type="button"
+                          id="purchase-btn"
+                          class="btn btn-outline-info btn-sm"
+                          onClick={event => this.updateItem(event, item)}
+                        >  purchased 
+                        </button>
+                      )}
+                    {!item.status && (
+                      <button
+                        type="button"
+                        id="purchase-btn"
+                        class="btn btn-outline-info btn-sm"
+                        onClick={event => this.updateItem(event, item)}
+                      > buy me!
+                      </button>
+                    )}
+                    {item.name}
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Items to Display</h3>
+            )}
+          </div>
         </div>
-      </div>
       </div>
     );
   }
