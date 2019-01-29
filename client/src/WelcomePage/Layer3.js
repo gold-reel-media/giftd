@@ -71,8 +71,15 @@ class Layer3 extends React.Component {
     state = {
         signedIn: false
     };
-    login = () => {
-        lock.show();
+    login = (p) => {
+        if(sessionStorage.getItem("accessToken")){
+            // if(p === "search"){
+            //     window.location = "/search";
+            // }
+        }
+        else{
+            lock.show();
+        }
     };
 
     checkDB() {
@@ -125,21 +132,21 @@ class Layer3 extends React.Component {
         console.log(this.props)
 
         return (
-
+            //sessionStorage.getItem("accessToken")
          <div>
             {!this.state.signedIn && (
                 <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/search" onClick={this.login}>
                     <Button> Find User </Button>
                 </button>
             )}
+
             {this.state.signedIn && (
                     <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/search">
-                        {/* This needs to be changed to user search page once we have it */}
                         <Link to={"/search"}>
                             <Button> Find User </Button>
                         </Link>
                     </button>
-            )}
+            )} 
             
             {!this.state.signedIn && (
                 <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/search" onClick={this.login}>

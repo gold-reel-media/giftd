@@ -11,7 +11,6 @@ import { List, ListItem } from "../Lists/Lists";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 import './style.css';
-import FriendList from "../FriendProfile/FriendList";
 
 
 
@@ -34,12 +33,12 @@ class AlertDialogSlide extends Component {
   loadLists = () => {
     let profile = JSON.parse(sessionStorage.getItem("profile"));
     console.log('loading')
-    $.get("/api/getWishlists/" + profile.email).then(res => {
+    $.get("/api/getWishlists/" + profile.email).then( res => {
       console.log(res);
-      this.setState({ lists: res, listName: "" });
+      this.setState({ lists: res, listName: ""});
       console.log(this.state);
     })
-      .catch(err => console.log(err));
+    .catch(err => console.log(err));
   };
 
 
@@ -55,11 +54,11 @@ class AlertDialogSlide extends Component {
   };
 
   //  clear form
-  resetForm = () => {
+   resetForm = () => {
     this.setState({
       listName: " "
     })
-  }
+  }  
 
   handleClose = (event) => {
     event.preventDefault();
@@ -76,8 +75,8 @@ class AlertDialogSlide extends Component {
         url: "/api/newWishlist",
         data: obj
       })
-        .then(this.loadLists)
-        .catch(err => console.log(err));
+      .then(this.loadLists)
+      .catch(err => console.log(err));
     }
 
   };
@@ -87,79 +86,72 @@ class AlertDialogSlide extends Component {
       type: "DELETE",
       url: "/api/removeWishlist/" + id
     })
-      .then(this.loadLists)
+    .then(this.loadLists)
   }
-
-
+    
+  
   render() {
     const { classes } = this.props;
     return (
       <div>
-
-        <div className="container-flex">
-          <div className="row">
-            <div className="col-12">
-              <div className='add-list-form'>
-                <Button className="add-wishlist-btn" style={{ borderRadius: "100px" }} onClick={this.handleClickOpen}>
-                  <i className="fas fa-plus-circle fa-10x"></i>
-                </Button>
-                <Dialog
-                  open={this.state.open}
-                  TransitionComponent={Transition}
-                  keepMounted
-                  onClose={this.handleClose}
-                  aria-labelledby="alert-dialog-slide-title"
-                  aria-describedby="alert-dialog-slide-description"
-                >
-                  <DialogTitle id="alert-dialog-slide-title">
-                    {"Enter List Name"}
-                  </DialogTitle>
-                  <DialogContent>
-                    <form noValidate autoComplete="off">
-                      <TextField
-                        id="outlined-name"
-                        label="Name"
-
-                        value={this.state.listName}
-                        onChange={this.handleChange('listName')}
-                        style={{ width: '545px' }}
-                        margin="normal"
-                        variant="outlined"
-                      />
-                    </form>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={this.handleClose} color="primary" type="submit">
-                      Add New List
+      <div className='add-list-form'>
+        <Button style={{borderRadius:"100px"}} onClick={this.handleClickOpen}>
+        <i className="fas fa-plus-circle fa-10x"></i>
+        </Button>
+        <Dialog
+          open={this.state.open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            {"Enter List Name"}
+          </DialogTitle>
+          <DialogContent>
+            <form  noValidate autoComplete="off">
+              <TextField
+                id="outlined-name"
+                label="Name"
+                
+                value={this.state.listName}
+                onChange={this.handleChange('listName')}
+                style={{width: '545px'}}
+                margin="normal"
+                variant="outlined"
+              />
+              </form>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary" type="submit">
+              Add New List
             </Button>
-
-                  </DialogActions>
-                </Dialog>
-              </div>
-              <div className="lists">
-                {this.state.lists.length ? (
-                  <List>
-                    {this.state.lists.map(list => (
-                      <ListItem key={list.wishlistId}>
-                        <Link to={'/list/' + list.wishlistId}>
-                          <strong>
-                            {list.name}
-                          </strong>
-                        </Link>
-                        <Button onClick={() => this.deleteList(list.wishlistId)} color="primary">
-                          Delete List
+            
+          </DialogActions>
+        </Dialog>
+      </div>
+      <div className="lists">
+      {this.state.lists.length ? (
+        <List>
+         {this.state.lists.map(list => (
+           <ListItem key={list.wishlistId}>
+            <Link to={'/list/' + list.wishlistId}>
+              <strong>
+                {list.name}
+              </strong>
+            </Link>
+            <Button onClick={() => this.deleteList(list.wishlistId)} color="primary">
+              Delete List
             </Button>
-                      </ListItem>
-                    ))}
-                  </List>
-                ) : (
-                    <h3>No Lists to Display</h3>
-                  )}
-
-              </div>
-            </div>
-          </div>
-        </div>
+           </ListItem>
+         ))}
+        </List>
+      ) : (
+        <h3>No Lists to Display</h3>
+      )}
+        
+      </div>
       </div>
     );
   }

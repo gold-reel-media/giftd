@@ -36,7 +36,7 @@ class Layer4 extends React.Component {
                 <br />
                 <p style={pstyle}>
                   {" "}
-                  Some info about Kathleen goes here.{" "}
+                  {/* Some info about Kathleen goes here.{" "} */}
                 </p>
                 <a style={{ color: "white" }} href="https://www.linkedin.com/in/kathleen-doviken/">
                   <FontAwesomeIcon style={{ marginRight: "10px" }} icon={["fab", "linkedin"]} />
@@ -51,7 +51,7 @@ class Layer4 extends React.Component {
                 <br />
                 <p style={pstyle}>
                   {" "}
-                  Some info about Cristina goes here.{" "}
+                  {/* Some info about Cristina goes here.{" "} */}
                 </p>
                 <a style={{ color: "white" }} href="https://www.linkedin.com/in/cristina-kernan/">
                   <FontAwesomeIcon style={{ marginRight: "10px" }} icon={["fab", "linkedin"]} />
@@ -64,7 +64,7 @@ class Layer4 extends React.Component {
                 <p style={pstyle}> Meg </p>
                 <img src={meg} style={styles} />
                 <br />
-                <p style={pstyle}> Some info about Meg goes here. </p>
+                {/* <p style={pstyle}> Some info about Meg goes here. </p> */}
               <a style={{ color: "white" }} href="https://www.linkedin.com/in/mgallagher6/">
                   <FontAwesomeIcon style={{ marginRight: "10px" }} icon={["fab", "linkedin"]} />
                 </a>
@@ -76,7 +76,7 @@ class Layer4 extends React.Component {
                 <p style={pstyle}> Thomas </p>
                 <img src={thomas} style={styles} />
                 <br />
-                <p style={pstyle}>Some info about Thomas goes here.</p>
+                {/* <p style={pstyle}>Some info about Thomas goes here.</p> */}
               <a style={{ color: "white" }} href="https://www.linkedin.com/in/thomas-smajstrla-8b8879b4/">
                   <FontAwesomeIcon style={{ marginRight: "10px" }} icon={["fab", "linkedin"]} />
                 </a>

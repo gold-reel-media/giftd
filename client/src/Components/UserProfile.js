@@ -38,20 +38,14 @@ class UserProfile extends Component {
     return (
       <div>
         <NavBar />
-        <AddListForm addList={this.addList} />
-        {/* <div className="profile-container container-flex">
-          <div className="row">
-            <div className="col-6">
-              <div className="list-form-and-container">
-                <h2>Add New List</h2>
-                <AddListForm addList={this.addList} />
-              </div>
-            </div>
-            <div className="col-6">
-              <FriendList />
-            </div>
-          </div>
-        </div> */}
+        <div className="profile-container">
+          <br />
+          <br />
+          <br />
+          <h2>Add New List</h2>
+          <AddListForm addList={this.addList} />
+          <FriendList />
+        </div>
       </div>
     );
   }
