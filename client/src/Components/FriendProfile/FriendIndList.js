@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { light } from "@material-ui/core/styles/createPalette";
 import $ from "jquery";
-import NavBar from "../../NavBar/NavBar";
+import SignedInNavbar from "../SignedInNavbar/SignedInNavbar";
 import { List, ListItem } from "../Lists/Lists";
 import "./style.css";
 
@@ -48,7 +48,6 @@ class IndList extends Component {
           if (thing.itemId === item.itemId) {
             thing.status = !thing.status;
           }
-          console.log("thing " + JSON.stringify(thing))
           return thing;
         })
       })
@@ -58,7 +57,7 @@ class IndList extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <SignedInNavbar />
         <div className="pageHead">
           <h1>Wish List Name</h1>
           <div className="items">

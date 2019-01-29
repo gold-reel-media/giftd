@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
 .navbar {
     background-color: #0d9aaac5;
 } 
@@ -8,16 +10,10 @@
 
 .username {
     color: #fff;
-    font-weight: bold;
+    font-family: "Permanent Marker", cursive;
     font-size: 25px;
     align-items: center;
     margin-left: 160px;
-    /* text-shadow:
-		-1px -1px 0 #000,
-		1px -1px 0 #000,
-		-1px 1px 0 #000,
-		1px 1px 0 #000; */
-
 }
 
 .btn:hover {

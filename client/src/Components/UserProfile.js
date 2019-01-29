@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import $ from "jquery";
 import FriendList from "./FriendProfile/FriendList";
 import AddListForm from "./AddListForm/AddListForm";
-import NavBar from '../NavBar/NavBar';
+import SignedInNavbar from './SignedInNavbar/SignedInNavbar';
 import Lists from "./Lists/Lists";
 import { Link } from "react-router-dom";
 
@@ -37,7 +37,7 @@ class UserProfile extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <SignedInNavbar />
         <div className="profile-container">
           <br />
           <br />
