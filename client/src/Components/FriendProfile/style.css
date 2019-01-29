@@ -1,18 +1,10 @@
-.pageHead{
-    margin-top: 130px;
+.friend-list{
+margin-top: -9.5%;
+text-align: center;
 }
 
-.friend-list {
-    border: 2px dotted grey;
-    width: 90%;
-    margin: 2%;
-    top: 45%;
-    min-height: 20%;
-    position: relative;
-}
-
-.friend {
-    color: purple;
+.friend{
+    color: #9f7694;
     font-size: 22px;
 }
 
