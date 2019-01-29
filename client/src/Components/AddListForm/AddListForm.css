@@ -2,6 +2,10 @@
     width: 700px;
 }
 
+.dialog-title {
+    color: #0d9aaa!important;
+}
+
 .your-lists {
     font-size: 22px;
     /* background-color: #9f76948a; */
@@ -11,8 +15,13 @@
     
 }
 
-.lists {
+.my-wishlists {
     text-align: center;
+    /* width: 500px; */
+    /* margin-left: auto;
+    margin-right: auto; */
+    text-align: center;
+    margin-top: 130px;
 }
 
 #alert-dialog-slide-title {
@@ -124,7 +133,7 @@ body {
     font-weight: bold;
 }
 
-.MuiTypography-title-89 {
+.MuiTypography-title-305 {
     color:#0d9aaa!important;
 }
 

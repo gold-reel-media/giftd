@@ -254,13 +254,14 @@ class OutlinedTextFields extends React.Component {
               </DialogActions>
             </Dialog>
           </div>
-          <div className="items">
+          <div className="my-items">
             {this.state.items.length ? (
               <List>
                 {this.state.items.map(item => (
                   <ListItem key={item.itemId}>
                     <div className="item-popup">
                       <Button
+                        className
                         name={item.name}
                         price={item.price}
                         itemLink={item.itemLink}
