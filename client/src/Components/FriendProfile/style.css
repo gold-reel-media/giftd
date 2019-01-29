@@ -8,7 +8,7 @@ text-align: center;
     font-size: 22px;
 }
 
-.items, .lists{
+.items{
     width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -30,4 +30,10 @@ text-align: center;
 
 .profile-container{
     margin-top: 100px;
+}
+
+.friend-ind-wishlist-items{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;    
 }
