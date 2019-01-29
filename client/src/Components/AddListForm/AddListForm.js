@@ -106,11 +106,11 @@ class AlertDialogSlide extends Component {
     
   
   render() {
-   //NOTESSS duplicate this component then delete what you don't need ( everything  but the plus and plus functionality) and do the opposite in the orig comopnent
-   //then write a function at the parent, pass it as props to the plus sign, then store the data you need in state at the parent and pass the data (using state!) as props down to the list component
+  
     return (
       <div>
       <div className='add-list-form col-sm-4'>
+      <div className="add-list-title">Add List</div>
         <Button className="plus-sign" style={{borderRadius:"100px"}} onClick={this.handleClickOpen}>
         <i className="fas fa-plus-circle fa-10x"></i>
         </Button>
