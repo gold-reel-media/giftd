@@ -24,6 +24,10 @@ class IndList extends Component {
           })
           .catch(err => console.log(err));
           console.log(this.state)
+        $.get("/api/getWishlist/" + listID)
+          .then(res => {
+            this.setState({ wishlistName: res.name})
+          })
       };
     
 
@@ -32,7 +36,7 @@ class IndList extends Component {
 
         return(
             <div>
-                <h1>Wist List Name</h1>
+                <h1>{this.state.wishlistName}</h1>
                 <p>look at what I want and buy it for</p>
                 <div className="items">
           {this.state.items.length ? (

@@ -72,15 +72,26 @@ class Layer3 extends React.Component {
         signedIn: false
     };
     login = (p) => {
+        lock.show();
+    };
+
+    login1 = () => {
         if(sessionStorage.getItem("accessToken")){
-            // if(p === "search"){
-            //     window.location = "/search";
-            // }
+            window.location = "/search";
         }
         else{
             lock.show();
         }
-    };
+    }
+
+    login2 = () => {
+        if(sessionStorage.getItem("accessToken")){
+            window.location = "/profile";
+        }
+        else{
+            lock.show();
+        }
+    }
 
     checkDB() {
         console.log("checkdb test");
@@ -135,7 +146,7 @@ class Layer3 extends React.Component {
             //sessionStorage.getItem("accessToken")
          <div>
             {!this.state.signedIn && (
-                <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/search" onClick={this.login}>
+                <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/search" onClick={this.login1}>
                     <Button> Find User </Button>
                 </button>
             )}
@@ -149,7 +160,7 @@ class Layer3 extends React.Component {
             )} 
             
             {!this.state.signedIn && (
-                <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/search" onClick={this.login}>
+                <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/profile" onClick={this.login2}>
                     <Button> My Profile </Button>
                 </button>
             )}
@@ -163,7 +174,7 @@ class Layer3 extends React.Component {
 
 
             {!this.state.signedIn && (
-                <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/search" onClick={this.login}>
+                <button style={{ backgroundColor: "#0d9aaa", border: "none" }} route="/profile" onClick={this.login2}>
                     <Button> Add List </Button>
                 </button>
             )}
