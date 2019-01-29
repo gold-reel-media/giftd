@@ -21,6 +21,7 @@ class App extends Component {
     }
 
     async componentDidMount() {
+      console.log("\napp component did mount\n");
       if(this.props.location.pathname ==='./callback') {
         this.setState({checkingSession: false})
         return;
@@ -35,6 +36,7 @@ class App extends Component {
     }
 
   render() {
+    console.log("\napp render\n");
     console.log(this.props)
     return (
       <div className="App">
