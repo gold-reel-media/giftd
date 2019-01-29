@@ -1,25 +1,30 @@
 # giftd
 
-## An application to make your wish list a reality
+## An application to make your wish a reality
 
 ## Purpose
-Want to have a place for your friends to see your gift wishes at all times of the year? Giftd does the work for you!
+
+Need a place for your friends to see your gift wishes at all times of the year? giftd does the work for you!
 
 ## MVP
+
 * Web Based application for people to create profiles
-* each user will create various gift wish lists for different events
+* Pages secured with Auth0 so you cannot view other user's information unless logged in and connected with them
+* Each user will create various gift wish lists for different events
 * Users will buy gifts from each other's lists
-* Gifts purchased by one user will not be able to be purchased by other users - the purchased item will be dropped from list or listed as purchased
+* Once your friend finds something to buy you, then can reserve it by clicking the "buy me!" button. This will change the status of the item to "purchased" and will update its status in the databse
 * Wish list items can be shared between event lists
 
 
 ## Contributors
-* Kathleen Doviken - wireframe and logo
-* Thomas Smajstrla - Material UI
-* Cristina Kernan - Material UI
-* Meg Gallagher - Auth0
+
+* Thomas Smajstrla - Database configuration and seeds / search for friend component
+* Cristina Kernan - user profile component / add item & and list components / Material UI
+* Meg Gallagher - Auth0 / friend profile components 
+* Kathleen Doviken - welcome page and logo
 
 ### Techonology Used
+
 * React
 * Javascript
 * MySQL
@@ -27,3 +32,4 @@ Want to have a place for your friends to see your gift wishes at all times of th
 * Heroku
 * Auth0
 * Material UI
+* Bootstrap
