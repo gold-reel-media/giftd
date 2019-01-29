@@ -40,9 +40,9 @@ const button = {
   border: "1px solid #0d9aaa",
 }
 
-// const dialog = {
-//   width: "600px"
-// }
+const img = {
+  width: "90%"
+}
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -301,10 +301,11 @@ class OutlinedTextFields extends React.Component {
                             <a href={this.state.itemLink}>Item Link</a>
                             <br />
                             <img
+                              style={img}
                               src={this.state.imageLink}
                               alt=""
-                              width="270"
-                              height="200"
+                              // width="270"
+                              // height="200"
                             />
                             <br/>
                             <br />
