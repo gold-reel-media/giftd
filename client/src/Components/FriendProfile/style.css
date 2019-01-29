@@ -1,0 +1,57 @@
+.friend-list{
+margin-top: -9.5%;
+text-align: center;
+position: absolute;
+top: 466.3px;
+}
+
+.friend{
+    color: #9f7694;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+
+.items{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 130px;
+}
+
+.friend-lists-display{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 130px;
+}
+
+.purchased {
+    font-size: 15px;
+    background-color: rgba(0, 255, 255, .5);
+    color: purple;
+    /* -webkit-transform: rotate(-10deg) scale(1.5) translateX(50%) translateY(-50%); */
+    transform: rotate(-15deg) translateY(-120%);
+} 
+
+#purchase-btn{
+    margin-right: .7em;
+}
+
+.profile-container{
+    margin-top: 100px;
+}
+
+.friend-ind-wishlist-items{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;    
+}
+
+.wishlist-name-listpg{
+    font-weight: bold;
+    font-size: 25px; 
+}
+
