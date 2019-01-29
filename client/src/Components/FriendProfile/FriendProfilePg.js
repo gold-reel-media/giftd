@@ -47,7 +47,7 @@ class FriendProfilePg extends Component {
         <SignedInNavbar />
         <div className="profile-container">
           <div className="lists">
-          <h5>{profile}&#39;s Wishlists</h5>
+          <h5>{profile}&#39;s Wishlists hello!</h5>
             {this.state.lists.length ? (
               <List>
                 {this.state.lists.map(list => (
