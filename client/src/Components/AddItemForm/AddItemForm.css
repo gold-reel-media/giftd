@@ -88,3 +88,8 @@ label {
 .MuiFormLabel-root-135.MuiFormLabel-focused-136 {
     color: #0d9aaa!important;
 }
+
+.list-item-btn:hover {
+    color: white!important;
+    background-color: #0d9aaa!important;
+}
