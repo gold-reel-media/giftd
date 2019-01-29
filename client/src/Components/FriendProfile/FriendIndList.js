@@ -10,10 +10,27 @@ class IndList extends Component {
     items: []
   };
 
-  componentDidMount() {
-    this.loadListItems();
-    console.log("friend profile items");
-  }
+    componentDidMount() {
+        this.loadListItems();
+        console.log("friend profile items");
+      }
+    
+      loadListItems = () => {
+        let listID = this.props.match.params.wishlistId;
+        console.log("list id " + listID)
+        $.get("/api/getItems/" + listID )
+          .then(res => {
+              console.log(res)
+            this.setState({ items: res});
+          })
+          .catch(err => console.log(err));
+          console.log(this.state)
+        $.get("/api/getWishlist/" + listID)
+          .then(res => {
+            this.setState({ wishlistName: res.name})
+          })
+      };
+    
 
   // get items from database and push into items.state array
   loadListItems = () => {

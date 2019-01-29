@@ -75,7 +75,7 @@ class Welcome extends React.Component {
                     offset={2}
                     speed={0.5}
                     style={styles}
-                    onClick={() => this.refs.parallax.scrollTo(3)}
+                    // onClick={() => this.refs.parallax.scrollTo(3)}
                 >
                     <Layer3 history={this.props.history}/>
                 </Parallax.Layer>

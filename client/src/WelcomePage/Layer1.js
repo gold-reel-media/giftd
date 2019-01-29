@@ -16,7 +16,7 @@ class Layer1 extends React.Component {
             <img src={logo} className="App-logo" alt="logo" style={{ width: "50vw", display: 'block', margin: 'auto' }} />
             <br />
             <p style={styles}>
-                Tagline goes here.
+                {/* Tagline goes here. */}
             </p>
         </div>;
     }
