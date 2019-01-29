@@ -1,6 +1,6 @@
 # giftd
 
-## An application to make your wish a reality
+### An application to make your wish a reality
 
 ## Purpose
 
