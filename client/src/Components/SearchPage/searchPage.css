@@ -43,6 +43,11 @@
     background-color: #0d9aaa!important;
 }
 
+.remove-friend-button:hover {
+    color: white!important;
+    background-color: #0d9aaa!important;
+}
+
 .add-friend-button:hover {
     color: white!important;
     background-color: #0d9aaa!important;
