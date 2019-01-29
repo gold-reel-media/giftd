@@ -20,7 +20,6 @@ class FriendList extends Component {
       this.setState({ 
           friends: frnd
      });
-
       console.log("frnd res " + JSON.stringify(res));
     });
   };

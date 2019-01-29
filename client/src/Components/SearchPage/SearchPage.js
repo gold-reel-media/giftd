@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import $ from "jquery";
 import SearchResults from "./SearchResults";
-import NavBar from "../../NavBar/NavBar";
+import SignedInNavbar from "../SignedInNavbar/SignedInNavbar";
 
 class SearchPage extends Component {
   constructor() {
@@ -82,7 +82,7 @@ class SearchPage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <SignedInNavbar />
         <div className="searchPage">
           <label>
             Name:

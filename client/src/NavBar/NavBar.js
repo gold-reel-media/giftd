@@ -25,8 +25,6 @@ class NavBar extends React.Component {
     if (accessToken) {
       lock.getUserInfo(accessToken, (err, data) => {
         if (err) return;
-        // console.log(data);
-        // console.log(accessToken)
 
         window.profile = data;
         this.setState({
@@ -43,9 +41,6 @@ class NavBar extends React.Component {
           // Handle error
           return;
         }
-
-        // console.log(authResult);
-        // console.log(profile);
 
         window.profile = profile;
 
@@ -105,7 +100,6 @@ class NavBar extends React.Component {
         )}
         {this.state.signedIn && (
           <div>
-            {/* <label className="mr-2 text-white">{}</label> */}
             <button className="btn btn-light" onClick={this.logout}>
               Sign Out
             </button>

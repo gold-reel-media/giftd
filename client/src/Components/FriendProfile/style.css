@@ -1,4 +1,8 @@
-.friend-list{
+.pageHead{
+    margin-top: 130px;
+}
+
+.friend-list {
     border: 2px dotted grey;
     width: 90%;
     margin: 2%;
@@ -7,11 +11,31 @@
     position: relative;
 }
 
-.friend{
+.friend {
     color: purple;
     font-size: 22px;
 }
 
-.username{
-    color: blue;
+.items, .lists{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 130px;
+}
+
+.purchased {
+    font-size: 15px;
+    background-color: rgba(0, 255, 255, .5);
+    color: purple;
+    /* -webkit-transform: rotate(-10deg) scale(1.5) translateX(50%) translateY(-50%); */
+    transform: rotate(-15deg) translateY(-120%);
+} 
+
+#purchase-btn{
+    margin-right: .7em;
+}
+
+.profile-container{
+    margin-top: 100px;
 }
