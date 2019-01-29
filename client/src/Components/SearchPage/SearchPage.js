@@ -11,6 +11,11 @@ const button = {
   background: "white",
   marginLeft: "100px",
   marginTop: "5px",
+  
+}
+
+const input = {
+  marginLeft: "12px"
 }
 
 class SearchPage extends Component {
@@ -95,6 +100,8 @@ class SearchPage extends Component {
           <label className="user-email">
             User Email:
             <TextField
+              className="search-input"
+              style={input}
               value={this.state.textFieldValue}
               onChange={this.handleTextChange}
             />

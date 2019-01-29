@@ -18,11 +18,16 @@
 
 .user-email {
     font-weight: 500;
+    margin-right: 5px!important;
 }
 
 .name{
     /* margin-right: 10px; */
     width: 30px;
+}
+
+.search-input {
+    margin-left: 12px
 }
 
 .subBtn{
@@ -36,4 +41,23 @@
 .subBtn:hover {
     color: white!important;
     background-color: #0d9aaa!important;
+}
+
+.add-friend-button:hover {
+    color: white!important;
+    background-color: #0d9aaa!important;
+}
+
+.friend-results {
+    margin-top: 20px;
+}
+
+.result-label {
+    font-weight: 500;
+    color: #9f7694;
+    margin-right: 5px;
+}
+
+.result-text {
+    color: black;
 }
