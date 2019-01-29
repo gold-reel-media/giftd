@@ -2,6 +2,10 @@
 
 .navbar {
     background-color: #0d9aaac5;
+    box-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.16), 
+    0 2px 10px rgba(0, 0, 0, 0.12);
+
 } 
 
 .btn {
@@ -19,3 +23,9 @@
 .btn:hover {
     color: white;
 }
+
+/* #styledNav{
+    box-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.16), 
+    0 2px 10px rgba(0, 0, 0, 0.12);
+} */
