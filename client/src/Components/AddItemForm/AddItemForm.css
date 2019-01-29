@@ -1,3 +1,28 @@
+.plus-sign {
+    background-color: #0d9aaa!important;
+    color: white!important;
+}
+
+.add-item-button {
+    color: #0d9aaa!important;
+    background-color: white!important
+}
+
+.add-item-button:hover {
+    color: white!important;
+    background-color: #0d9aaa!important;
+}
+
+.modal-button:hover {
+    color: white!important;
+    background-color: #0d9aaa!important;
+}
+
+.modal-button {
+    color: #0d9aaa!important;
+    background-color: white!important
+}
+
 #alert-dialog-slide-description {
     text-align: center;
 }
@@ -45,6 +70,7 @@ body {
 .add-item {
     font-size: 25px;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .MuiTypography-title-89 {

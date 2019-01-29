@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import $ from "jquery";
 import FriendList from "./FriendProfile/FriendList";
 import AddListForm from "./AddListForm/AddListForm";
-import SignedInNavbar from './SignedInNavbar/SignedInNavbar';
+import SignedInNavbar from "./SignedInNavbar/SignedInNavbar";
 import Lists from "./Lists/Lists";
 import { Link } from "react-router-dom";
 
@@ -39,10 +39,10 @@ class UserProfile extends Component {
       <div>
         <SignedInNavbar />
         <div className="profile-container">
+          {/* <br />
           <br />
-          <br />
-          <br />
-          <h2>Add New List</h2>
+          <br /> */}
+          
           <AddListForm addList={this.addList} />
           <FriendList />
         </div>

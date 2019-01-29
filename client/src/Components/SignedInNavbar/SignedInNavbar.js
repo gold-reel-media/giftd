@@ -34,7 +34,7 @@ class SignedInNavbar extends React.Component {
           {/* <label className="mr-2 text-white">{}</label> */}
           <Link to={"/profile/"}>
           <button className="btn">
-            List Page
+            Profile
           </button>
           </Link>
           <Link to={"/search/"}>
