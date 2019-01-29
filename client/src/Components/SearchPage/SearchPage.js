@@ -84,20 +84,35 @@ class SearchPage extends Component {
       <div>
         <NavBar />
         <div className="searchPage">
-          <label>
-            Name:
-            <TextField
-              value={this.state.textFieldValue}
-              onChange={this.handleTextChange}
-            />
-          </label>
-          <Button
-            variant="contained"
-            className="subBtn classes.button"
-            onClick={this.handleSubmit}
-          >
-            Search
-          </Button>
+          <div className="container-flex">
+            <div className="row">
+              <div className="col-2">
+                {/* <label> */}
+                Name:
+            </div>
+              <div className="col-10">
+                <TextField
+                  value={this.state.textFieldValue}
+                  onChange={this.handleTextChange}
+                />
+              </div>
+              {/* </label> */}
+            </div>
+            <div className="row">
+              <div className="col-4"></div>
+              <div className="col-4">
+                <Button
+                  variant="contained"
+                  className="subBtn classes.button"
+                  onClick={this.handleSubmit}
+                >
+                  Search
+                </Button>
+              </div>
+              <div className="col-4"></div>
+            </div>
+          </div>
+          <div className = "result">
           {this.state.searchResult.username !== "not found" && (
             <SearchResults
               profilename={this.state.searchResult.profilename}
@@ -106,6 +121,7 @@ class SearchPage extends Component {
               loggedUser={this.state.loggedUser}
             />
           )}
+          </div>
         </div>
       </div>
     );

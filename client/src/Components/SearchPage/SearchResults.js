@@ -15,10 +15,10 @@ import './searchPage.css'
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
-  }
+}
 
 class SearchResults extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             username: props.username,
@@ -29,20 +29,20 @@ class SearchResults extends Component {
         this.modifyFriend = this.modifyFriend.bind(this);
     }
 
-    handleClick(){
+    handleClick() {
         var op = !this.state.open;
         this.setState({
             open: op
         })
     }
 
-    modifyFriend(){
+    modifyFriend() {
         console.log("modifyFriend reached");
         var obj = {
             friend1: this.props.loggedUser,
             friend2: this.props.username
         }
-        if(!this.props.alreadyFriends){
+        if (!this.props.alreadyFriends) {
             $.ajax({
                 type: "POST",
                 url: "/api/addFriends",
@@ -52,7 +52,7 @@ class SearchResults extends Component {
                 }
             });
         }
-        else{
+        else {
             $.ajax({
                 type: "POST",
                 url: "/api/removeFriends",
@@ -65,67 +65,103 @@ class SearchResults extends Component {
         this.handleClick();
     }
 
-    render(){
-        if(!this.props.alreadyFriends){
-            return(
-            <div>
-                <label>username: {this.props.username}</label> <br />
-                <label>pofilename: {this.props.profilename}</label> <br />
-                <Button variant="contained" color = "primary" className="classes.button" onClick={this.handleClick}> Add Friend </Button>
-                <Dialog
-            open={this.state.open}
-            TransitionComponent={Transition}
-            keepMounted
-            onClose={this.handleClose}
-            aria-labelledby="alert-dialog-slide-title"
-            aria-describedby="alert-dialog-slide-description"
-                >
-                
-            <DialogTitle id="alert-dialog-slide-title">
-                {"Add " + this.props.profilename + " as a Friend?"}
-            </DialogTitle>
-            <DialogContent>
-                <Button variant="contained" color = "primary" className="classes.button" onClick={this.modifyFriend}> Add </Button>
-            </DialogContent>
-            <DialogActions>
+    render() {
+        if (!this.props.alreadyFriends) {
+            return (
+                <div>
+                    <div className="container-flex">
+                        <div className="row">
+                            <div className="col-12">
+                                <label>username: {this.props.username}</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-12">
+                                <label>pofilename: {this.props.profilename}</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-4"></div>
+                            <div className="col-4">
+                                <Button variant="contained" color="primary" className="classes.button" onClick={this.handleClick}> Add Friend </Button>
+                                <Dialog
+                                    open={this.state.open}
+                                    TransitionComponent={Transition}
+                                    keepMounted
+                                    onClose={this.handleClose}
+                                    aria-labelledby="alert-dialog-slide-title"
+                                    aria-describedby="alert-dialog-slide-description"
+                                >
 
-                <Button onClick={this.handleClick} color="primary">
-                Close
-                </Button>
-            </DialogActions>
-            </Dialog>
-            </div>
+                                    <DialogTitle id="alert-dialog-slide-title">
+                                        {"Add " + this.props.profilename + " as a Friend?"}
+                                    </DialogTitle>
+                                    <DialogContent>
+                                        <div className="dialogBtn">
+                                            <Button variant="contained" color="primary" className="classes.button" onClick={this.modifyFriend}> Add </Button>
+                                        </div>
+                                    </DialogContent>
+                                    <DialogActions>
+
+                                        <Button onClick={this.handleClick} color="primary">
+                                            Close
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </div>
+                            <div className="col-4"></div>
+                        </div>
+                    </div>
+                </div>
             )
         }
-        else{
-            return(
+        else {
+            return (
                 <div>
-                <label>username: {this.props.username}</label> <br />
-                <label>pofilename: {this.props.profilename}</label> <br />
-                <Button variant="contained" color = "primary" className="classes.button" onClick={this.handleClick}> Add Friend </Button>
-                <Dialog
-            open={this.state.open}
-            TransitionComponent={Transition}
-            keepMounted
-            onClose={this.handleClose}
-            aria-labelledby="alert-dialog-slide-title"
-            aria-describedby="alert-dialog-slide-description"
-                >
-                
-            <DialogTitle id="alert-dialog-slide-title">
-                {"You are already friends with " + this.props.profilename + ". Remove them?"}
-            </DialogTitle>
-            <DialogContent>
-                <Button variant="contained" color = "primary" className="classes.button" onClick={this.modifyFriend}> Remove </Button>
-            </DialogContent>
-            <DialogActions>
+                    <div className="container-flex">
+                        <div className="row">
+                            <div className="col-12">
+                                <label>username: {this.props.username}</label> <br />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-12">
+                                <label>pofilename: {this.props.profilename}</label> <br />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-4"></div>
+                            <div className="col-4">
+                                <Button variant="contained" color="primary" className="classes.button" onClick={this.handleClick}> Add Friend </Button>
+                                <Dialog
+                                    open={this.state.open}
+                                    TransitionComponent={Transition}
+                                    keepMounted
+                                    onClose={this.handleClose}
+                                    aria-labelledby="alert-dialog-slide-title"
+                                    aria-describedby="alert-dialog-slide-description"
+                                >
 
-                <Button onClick={this.handleClick} color="primary">
-                Close
-                </Button>
-            </DialogActions>
-            </Dialog>
-            </div>
+                                    <DialogTitle id="alert-dialog-slide-title">
+                                        {"You are already friends with " + this.props.profilename + ". Remove them?"}
+                                    </DialogTitle>
+                                    <DialogContent>
+                                    <div className="dialogBtn">
+                                        <Button variant="contained" color="primary" className="classes.button" onClick={this.modifyFriend}> Remove </Button>
+                                    </div>
+                                    </DialogContent>
+                                    <DialogActions>
+
+                                        <Button onClick={this.handleClick} color="primary">
+                                            Close
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </div>
+                            <div className="col-4"></div>
+                        </div>
+                    </div>
+                </div >
             )
         }
     }

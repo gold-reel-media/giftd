@@ -68,7 +68,7 @@ class Welcome extends React.Component {
                     style={styles}
                     onClick={() => this.refs.parallax.scrollTo(2)}
                 >
-                    <p style={pstyle}> Welcome to giftd! This is a website dedicated to helping facilitate gift buying amongst yourself and the people around you, for any occasion! Fear not come Christmas or birthdays, or even when managing a gift registery for a wedding. giftd provides a simple and fun way to coordinate what gifts to buy and who's buying them.  </p>
+                    <p style={pstyle}> Welcome to giftd! giftd is a website dedicated to helping facilitate gift buying amongst yourself and the people around you, for any occasion! Fear not come Christmas or birthdays, or even when managing a gift registery for a wedding. giftd provides a simple and fun way to coordinate what gifts to buy and who's buying them.  </p>
                 </Parallax.Layer>
 
                 <Parallax.Layer
