@@ -114,7 +114,7 @@ class IndList extends Component {
         <SignedInNavbar />
         <div className="pageHead">
           <div className="items">
-        {this.state.wishlistName}
+        <div className="wishlist-name-listpg">{this.state.wishlistName}</div>
             {this.state.items.length ? (
               <List>
                 {this.state.items.map(item => (
