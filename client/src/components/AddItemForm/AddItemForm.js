@@ -14,6 +14,7 @@ import $ from "jquery";
 import { List, ListItem } from "../Lists/Lists";
 import "./AddItemForm.css";
 import SignedInNavbar from "../SignedInNavbar/SignedInNavbar";
+import { orange } from "@material-ui/core/colors";
 
 const styles = theme => ({
   container: {
@@ -30,7 +31,8 @@ const styles = theme => ({
   },
   menu: {
     width: 200
-  }
+  },
+ 
 });
 
 function Transition(props) {

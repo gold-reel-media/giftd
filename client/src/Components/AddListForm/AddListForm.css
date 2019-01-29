@@ -2,28 +2,73 @@
     width: 700px;
 }
 
+.your-lists {
+    font-size: 22px;
+    /* background-color: #9f76948a; */
+    color: #9f7694;
+    font-weight: 500;
+    text-align: center;
+    
+}
+
+.lists {
+    text-align: center;
+}
+
+#alert-dialog-slide-title {
+    color: #0d9aaa!important;
+}
+
+#outlined-name {
+    border-color: #fb9e1b!important;
+}
+
+.list.name {
+    color: #0d9aaa;
+    text-align: center;
+}
+
+li a:hover {
+    color: #9f7694;
+    text-decoration: none;
+}
 /* .MuiOutlinedInput-root-142 {
     position: relative;
     /* width: 545px; */
 /* } */ 
-
-button:focus {
-    outline:0;
+.add-list-form {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 130px;
 }
 
-.MuiInputBase-input-165 {
-    border-top-color: purple !important;
-}
-
-.MuiButton-textPrimary-4 {
+/* .MuiButton-textPrimary-4 {
     color: #0d9aaa!important;
     border: 1px solid #0d9aaa!important;
     
-}
-
-.MuiButton-textPrimary-4:hover {
+} */
+.plus-sign {
     background-color: #0d9aaa!important;
     color: white!important;
+}
+
+.delete-button:hover {
+    color: white!important;
+    background-color: #0d9aaa!important;
+}
+
+.add-list:hover {
+    color: white!important;
+    background-color: #0d9aaa!important;
+}
+
+button:focus {outline:0;}
+
+.plus-sign:hover {
+    background-color: #9f7694!important;
+    color: white!important;
+    
 }
 
 .MuiButtonBase-root-27.MuiButton-root-1.MuiButton-text-3.MuiButton-textPrimary-4.MuiButton-flat-6.MuiButton-flatPrimary-7 {

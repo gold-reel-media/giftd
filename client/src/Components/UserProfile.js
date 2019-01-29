@@ -39,10 +39,10 @@ class UserProfile extends Component {
       <div>
         <SignedInNavbar />
         <div className="profile-container">
+          {/* <br />
           <br />
-          <br />
-          <br />
-          <h2>Add New List</h2>
+          <br /> */}
+          
           <AddListForm addList={this.addList} />
           <FriendList />
         </div>

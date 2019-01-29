@@ -10,6 +10,22 @@ import { List, ListItem } from "../Lists/Lists";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 import './AddListForm.css';
+import { orange } from '@material-ui/core/colors';
+
+
+const button = {
+  color: "#0d9aaa",
+  border: "1px solid #0d9aaa",
+  "&:hover": {
+    color: "white",
+    background: "#0d9aaa"
+  }
+}
+
+const title = {
+  color: "#0d9aaa",
+}
+
 
 
 
@@ -93,8 +109,8 @@ class AlertDialogSlide extends Component {
    
     return (
       <div>
-      <div className='add-list-form'>
-        <Button style={{borderRadius:"100px"}} onClick={this.handleClickOpen}>
+      <div className='add-list-form col-sm-4'>
+        <Button className="plus-sign" style={{borderRadius:"100px"}} onClick={this.handleClickOpen}>
         <i className="fas fa-plus-circle fa-10x"></i>
         </Button>
         <Dialog
@@ -105,7 +121,7 @@ class AlertDialogSlide extends Component {
           aria-labelledby="alert-dialog-slide-title"
           aria-describedby="alert-dialog-slide-description"
         >
-          <DialogTitle id="alert-dialog-slide-title">
+          <DialogTitle className="dialog-title" style={title} id="alert-dialog-slide-title">
             {"Enter List Name"}
           </DialogTitle>
           <DialogContent>
@@ -113,7 +129,7 @@ class AlertDialogSlide extends Component {
               <TextField
                 id="outlined-name"
                 label="Name"
-                
+                className="list-input"
                 value={this.state.listName}
                 onChange={this.handleChange('listName')}
                 style={{width: '545px'}}
@@ -123,24 +139,25 @@ class AlertDialogSlide extends Component {
               </form>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary" type="submit">
+            <Button className="add-list" style={button} onClick={this.handleClose} color="primary" type="submit">
               Add New List
             </Button>
             
           </DialogActions>
         </Dialog>
       </div>
-      <div className="lists">
+      <div className="lists col-sm-5 offset-sm-6">
       {this.state.lists.length ? (
         <List>
+        <div className="your-lists">Your Lists</div>
          {this.state.lists.map(list => (
            <ListItem key={list.wishlistId}>
             <Link to={'/list/' + list.wishlistId}>
-              <strong>
+              <strong className="list.name">
                 {list.name}
               </strong>
             </Link>
-            <Button onClick={() => this.deleteList(list.wishlistId)} color="primary">
+            <Button className="col-sm-3 delete-button" style={button} onClick={() => this.deleteList(list.wishlistId)} color="primary">
               Delete List
             </Button>
            </ListItem>

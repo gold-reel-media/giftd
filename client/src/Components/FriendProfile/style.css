@@ -1,11 +1,10 @@
 .friend-list{
-    border: 2px dotted grey;
-    width: 35%;
-    margin: 2%;
+margin-top: -9.5%;
+text-align: center;
 }
 
 .friend{
-    color: purple;
+    color: #9f7694;
     font-size: 22px;
 }
 
