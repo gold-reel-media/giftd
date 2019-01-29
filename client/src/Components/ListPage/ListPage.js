@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AddItemForm from "../AddItemForm/AddItemForm";
-import NavBar from "../../NavBar/NavBar";
 import Items from "../Items/Items";
+import SignedInNavbar from "../SignedInNavbar/SignedInNavbar"
 
 class ListPage extends Component {
   state = {
@@ -21,7 +21,7 @@ class ListPage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <SignedInNavbar />
         <div className="list-page-container">
           <h2>List Page</h2>
           <AddItemForm addItem={this.addItem} />

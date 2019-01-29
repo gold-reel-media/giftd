@@ -2,6 +2,7 @@ import auth0 from 'auth0-js';
 
 class Auth {
     constructor() {
+      console.log("\n@@@@Auth constructor\n");
       this.auth0 = new auth0.WebAuth({
         domain: 'wishlist-2u.auth0.com',
         clientID: 'uPoNkl6EbS0CdIGluuMXmpi67AlmWLt7',

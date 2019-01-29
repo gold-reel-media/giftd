@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import $ from "jquery";
-import { List, ListItem } from '../Lists/Lists';
+import { List, ListItem } from "../Lists/Lists";
 import { Link } from "react-router-dom";
-import NavBar from "../../NavBar/NavBar"
-
+import SignedInNavbar from "../SignedInNavbar/SignedInNavbar";
 
 class FriendProfilePg extends Component {
   state = {
@@ -13,6 +12,7 @@ class FriendProfilePg extends Component {
   componentDidMount() {
     this.loadLists();
     console.log("friend profile mounted");
+    this.getFriends()
   }
 
   loadLists = () => {
@@ -20,33 +20,48 @@ class FriendProfilePg extends Component {
     $.get("/api/getWishlists/" + profile)
       .then(res => {
         this.setState({ lists: res, listName: "" });
+        console.log("res "+JSON.stringify(res));
+        this.getFriends();
       })
       .catch(err => console.log(err));
   };
+
+
+  getFriends = () => {
+    let username = JSON.parse(sessionStorage.getItem('profile'));
+    $.get("/api/getFriends/" + username).then(res => {
+      let frnd = res;
+      this.setState({ 
+          friends: frnd
+     })
+     console.log("state "+ JSON.stringify(this.state))
+    });
+  };
+
 
   render() {
     let profile = this.props.match.params.username;
 
     return (
       <div>
-          <NavBar />
+        <SignedInNavbar />
         <div className="profile-container">
-          <h1>Friend's Profile Page</h1>
-        </div>
-        <div className="lists">
-          {this.state.lists.length ? (
-            <List>
-              {this.state.lists.map(list => (
-                <ListItem key={list.wishlistId}>
-                  <Link to={"friendlist/" + list.wishlistId}>
-                    <strong>{list.name}</strong>
-                  </Link>
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <h3>No Lists to Display</h3>
-          )}
+          <div className="lists">
+          <h5>{profile}&#39;s Wishlists</h5>
+            {this.state.lists.length ? (
+              <List>
+                {this.state.lists.map(list => (
+                  <ListItem key={list.wishlistId}>
+                    <Link to={"friendlist/" + list.wishlistId}>
+                      <strong>{list.name}</strong>
+                    </Link>
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Lists to Display</h3>
+            )}
+          </div>
         </div>
       </div>
     );

@@ -93,7 +93,7 @@ class SearchPage extends Component {
           </label>
           <Button
             variant="contained"
-            className="classes.button"
+            className="subBtn classes.button"
             onClick={this.handleSubmit}
           >
             Search
