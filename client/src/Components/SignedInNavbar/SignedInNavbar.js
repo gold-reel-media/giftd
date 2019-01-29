@@ -13,7 +13,7 @@ class SignedInNavbar extends React.Component {
   render() {
     let profile = JSON.parse(sessionStorage.getItem("profile"));
     return (
-      <nav className="navbar navbar-light fixed-top">
+      <nav className="navbar navbar-light fixed-top stroke" id="styledNav">
         <Link className="navbar-brand" to="/">
           <img
             src={logo}

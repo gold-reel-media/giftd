@@ -6,48 +6,39 @@ import SignedInNavbar from "../SignedInNavbar/SignedInNavbar";
 
 class FriendProfilePg extends Component {
   state = {
-    lists: {}
+    lists: {},
+    friends: {}
   };
 
   componentDidMount() {
     this.loadLists();
     console.log("friend profile mounted");
-    this.getFriends()
   }
 
   loadLists = () => {
     let profile = this.props.match.params.username;
+
     $.get("/api/getWishlists/" + profile)
       .then(res => {
         this.setState({ lists: res, listName: "" });
         console.log("res "+JSON.stringify(res));
-        this.getFriends();
       })
       .catch(err => console.log(err));
+      $.get("/api/getUser/" + profile).then(result => {
+          this.setState({
+           name: result.profilename
+          });
+          console.log("result "+ this.state.name)
+        })
   };
-
-
-  getFriends = () => {
-    let username = JSON.parse(sessionStorage.getItem('profile'));
-    $.get("/api/getFriends/" + username).then(res => {
-      let frnd = res;
-      this.setState({ 
-          friends: frnd
-     })
-     console.log("state "+ JSON.stringify(this.state))
-    });
-  };
-
 
   render() {
-    let profile = this.props.match.params.username;
-
     return (
       <div>
         <SignedInNavbar />
         <div className="profile-container">
-          <div className="lists">
-          <h5>{profile}&#39;s Wishlists</h5>
+          <div className="friend-lists-display">
+          <h5>{this.state.name}&#39;s Wishlists</h5>
             {this.state.lists.length ? (
               <List>
                 {this.state.lists.map(list => (
