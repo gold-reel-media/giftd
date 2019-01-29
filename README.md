@@ -8,7 +8,7 @@ Need a place for your friends to see your gift wishes at all times of the year? 
 
 
 ## Wanna check it out for yourself? Click [here!!](https://giftd-app.herokuapp.com)
-![giftd]()
+![giftd](client/src/giftd.gif)
 
 ## MVP
 
