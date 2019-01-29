@@ -16,10 +16,8 @@ import { orange } from '@material-ui/core/colors';
 const button = {
   color: "#0d9aaa",
   border: "1px solid #0d9aaa",
-  "&:hover": {
-    color: "white",
-    background: "#0d9aaa"
-  }
+  marginLeft: "15px"
+  
 }
 
 const title = {

@@ -165,6 +165,7 @@ class OutlinedTextFields extends React.Component {
         <div className="add-item">Add Item</div>
           <div className="add-item-form">
             <Button
+              className="plus-sign"
               style={{ borderRadius: "100px" }}
               onClick={this.handleFormOpen}
             >
@@ -247,7 +248,7 @@ class OutlinedTextFields extends React.Component {
                 </form>
               </DialogContent>
               <DialogActions>
-                <Button onClick={this.handleFormClose} color="primary">
+                <Button className="add-item-button" onClick={this.handleFormClose} color="primary">
                   Add Item
                 </Button>
               </DialogActions>
@@ -299,13 +300,13 @@ class OutlinedTextFields extends React.Component {
                           </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                          <Button
+                          <Button className="modal-button"
                             onClick={() => this.deleteItem(item.itemId)}
                             color="primary"
                           >
                             Delete Item
                           </Button>
-                          <Button onClick={this.handleClose} color="primary">
+                          <Button className="modal-button" onClick={this.handleClose} color="primary">
                             Close
                           </Button>
                         </DialogActions>
