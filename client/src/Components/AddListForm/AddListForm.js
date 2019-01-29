@@ -32,6 +32,7 @@ function Transition(props) {
 }
 
 class AlertDialogSlide extends Component {
+ 
   state = {
     open: false,
     lists: [],
@@ -64,8 +65,9 @@ class AlertDialogSlide extends Component {
 
   handleClickOpen = () => {
     this.setState({ open: true });
-  };
 
+  };
+  
   //  clear form
    resetForm = () => {
     this.setState({
@@ -104,10 +106,11 @@ class AlertDialogSlide extends Component {
     
   
   render() {
-   
+  
     return (
       <div>
       <div className='add-list-form col-sm-4'>
+      <div className="add-list-title">Add List</div>
         <Button className="plus-sign" style={{borderRadius:"100px"}} onClick={this.handleClickOpen}>
         <i className="fas fa-plus-circle fa-10x"></i>
         </Button>
@@ -144,7 +147,7 @@ class AlertDialogSlide extends Component {
           </DialogActions>
         </Dialog>
       </div>
-      <div className="lists col-sm-5 offset-sm-6">
+      <div className="my-wishlists col-sm-5 offset-sm-6">
       {this.state.lists.length ? (
         <List>
         <div className="your-lists">Your Lists</div>

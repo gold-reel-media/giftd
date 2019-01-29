@@ -5,6 +5,19 @@ import $ from "jquery";
 import SearchResults from "./SearchResults";
 import SignedInNavbar from "../SignedInNavbar/SignedInNavbar";
 
+const button = {
+  color: "#0d9aaa",
+  border: "1px solid #0d9aaa",
+  background: "white",
+  marginLeft: "100px",
+  marginTop: "5px",
+  
+}
+
+const input = {
+  marginLeft: "12px"
+}
+
 class SearchPage extends Component {
   constructor() {
     super();
@@ -84,14 +97,17 @@ class SearchPage extends Component {
       <div>
         <SignedInNavbar />
         <div className="searchPage">
-          <label>
-            Name:
+          <label className="user-email">
+            User Email:
             <TextField
+              className="search-input"
+              style={input}
               value={this.state.textFieldValue}
               onChange={this.handleTextChange}
             />
           </label>
           <Button
+            style={button}
             variant="contained"
             className="subBtn classes.button"
             onClick={this.handleSubmit}

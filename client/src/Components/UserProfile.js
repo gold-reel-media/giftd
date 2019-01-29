@@ -34,16 +34,22 @@ class UserProfile extends Component {
     });
     console.log("window" + window);
   };
+
+
+
   render() {
     return (
-      <div>
+      <div> 
+        {/* add a class display flex, flex-direction column */}
         <SignedInNavbar />
+        {/* <PlusSign /> */}
         <div className="profile-container">
           {/* <br />
           <br />
           <br /> */}
           
-          <AddListForm addList={this.addList} />
+          <AddListForm  />
+          {/* <AddListFormDuplicate info={this.state.info} /> */}
           <FriendList />
         </div>
       </div>

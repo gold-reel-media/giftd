@@ -10,7 +10,20 @@ import Dialog from '@material-ui/core/Dialog';
 import Slide from '@material-ui/core/Slide';
 import './searchPage.css'
 
+const button = {
+    color: "#0d9aaa",
+    border: "1px solid #0d9aaa",
+    background: "white",
+    marginLeft: "86px",
+    marginTop: "5px",
+    marginBottom: "7px"
+  }
 
+  const removeButton = {
+    color: "#0d9aaa",
+    border: "1px solid #0d9aaa",
+    background: "white",
+  }
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -67,10 +80,10 @@ class SearchResults extends Component {
     render(){
         if(!this.props.alreadyFriends){
             return(
-            <div>
-                <label>username: {this.props.username}</label> <br />
-                <label>pofilename: {this.props.profilename}</label> <br />
-                <Button variant="contained" color = "primary" className="classes.button" onClick={this.handleClick}> Add Friend </Button>
+            <div className="friend-results">
+                <label className="result-text"><span className="result-label">User Email:</span> {this.props.username}</label> <br />
+                <label className="result-text"><span className="result-label">User Name:</span> {this.props.profilename}</label> <br />
+                <Button style={button} variant="contained" color = "primary" className="classes.button" onClick={this.handleClick}> Add Friend </Button>
                 <Dialog
             open={this.state.open}
             TransitionComponent={Transition}
@@ -84,11 +97,11 @@ class SearchResults extends Component {
                 {"Add " + this.props.profilename + " as a Friend?"}
             </DialogTitle>
             <DialogContent>
-                <Button variant="contained" color = "primary" className="classes.button" onClick={this.modifyFriend}> Add </Button>
+                <Button style={removeButton} variant="contained" color = "primary" className="classes.button remove-friend-button" onClick={this.modifyFriend}> Add </Button>
             </DialogContent>
             <DialogActions>
 
-                <Button onClick={this.handleClick} color="primary">
+                <Button style={removeButton} onClick={this.handleClick} color="primary" className="remove-friend-button">
                 Close
                 </Button>
             </DialogActions>
@@ -98,10 +111,10 @@ class SearchResults extends Component {
         }
         else{
             return(
-                <div>
-                <label>username: {this.props.username}</label> <br />
-                <label>pofilename: {this.props.profilename}</label> <br />
-                <Button variant="contained" color = "primary" className="classes.button" onClick={this.handleClick}> Add Friend </Button>
+                <div className="friend-results">
+                <label className="result-text"><span className="result-label">User Email:</span>  {this.props.username}</label> <br />
+                <label className="result-text"><span className="result-label">User Name:</span> {this.props.profilename}</label> <br />
+                <Button style={button} variant="contained" color = "primary" className="classes.button add-friend-button" onClick={this.handleClick}> Add Friend </Button>
                 <Dialog
             open={this.state.open}
             TransitionComponent={Transition}
@@ -115,11 +128,11 @@ class SearchResults extends Component {
                 {"You are already friends with " + this.props.profilename + ". Remove them?"}
             </DialogTitle>
             <DialogContent>
-                <Button variant="contained" color = "primary" className="classes.button" onClick={this.modifyFriend}> Remove </Button>
+                <Button style={removeButton} variant="contained" color = "primary" className="classes.button remove-friend-button" onClick={this.modifyFriend}> Remove </Button>
             </DialogContent>
             <DialogActions>
 
-                <Button onClick={this.handleClick} color="primary">
+                <Button style={removeButton} onClick={this.handleClick} color="primary" className="remove-friend-button">
                 Close
                 </Button>
             </DialogActions>
