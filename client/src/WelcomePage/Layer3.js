@@ -20,6 +20,8 @@ var lock = new Auth0Lock(
             "google",
             "google-oauth2"
         ],
+        // this might fix on heroku or break it.... You can test after your presentation
+        redirect:false
     }
 );
 class Layer3 extends React.Component {
