@@ -77,7 +77,7 @@ class Layer3 extends React.Component {
 
     login1 = () => {
         if(sessionStorage.getItem("accessToken")){
-            window.location = "/search";
+            this.history.push("/search");
         }
         else{
             lock.show();
@@ -86,7 +86,7 @@ class Layer3 extends React.Component {
 
     login2 = () => {
         if(sessionStorage.getItem("accessToken")){
-            window.location = "/profile";
+            this.history.push("/profile");
         }
         else{
             lock.show();
