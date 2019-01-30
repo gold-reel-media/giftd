@@ -63,34 +63,39 @@ class Layer3 extends React.Component {
 
                 this.checkDB();
                 this.props.history.push(this.props.route);
-                console.log(this.props.route);
+                if(this.state.go){
+                    this.props.history.push(this.state.go);
+                }
+                this.setState({
+                    signedIn: true,
+                    go: null
+                });
 
             });
+            console.log('about')
+            lock.hide();
         });
     }
     state = {
-        signedIn: false
+        signedIn: false,
+        go: null
     };
     login = (p) => {
         lock.show();
     };
 
     login1 = () => {
-        if(sessionStorage.getItem("accessToken")){
-            this.history.push("/search");
-        }
-        else{
-            lock.show();
-        }
+        this.setState({
+            go: "/search"
+        });
+        lock.show();
     }
 
     login2 = () => {
-        if(sessionStorage.getItem("accessToken")){
-            this.history.push("/profile");
-        }
-        else{
-            lock.show();
-        }
+        this.setState({
+            go: "/profile"
+        });
+        lock.show();
     }
 
     checkDB() {
