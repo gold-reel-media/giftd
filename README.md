@@ -33,6 +33,8 @@ Need a place for your friends to see your gift wishes at all times of the year? 
 * Javascript
 * MySQL
 * Sequelize
+* Node.js
+* Express
 * Heroku
 * Auth0
 * Material UI
